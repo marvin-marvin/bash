@@ -138,4 +138,5 @@ if [[ "$HOSTNAME" == "vps-ger-fra-1" ]] ; then
     else
         eval `ssh-agent`;
         ssh-add ~/bash-keys/acc_rsa;
+    fi
 fi
