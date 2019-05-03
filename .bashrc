@@ -59,18 +59,18 @@ esac
 echo -ne "\033]0;${USER}@${HOSTNAME}\007"
 
 ### machines
-vps-us-ny-kube-1="23.95.61.166"
-vps-us-ny-kube-1p="22"
-vps-us-lax-kube-2="207.228.235.252"
-vps-us-lax-kube-2p="22"
-vps-ger-nue-kube-3="5.189.138.17"
-vps-ger-nue-kube-3p="22"
-vps-us-chi-kube-4="172.245.128.49"
-vps-us-chi-kube-4p="22"
+vpsusnykube1="23.95.61.166"
+vpsusnykube1p="22"
+vpsuslaxkube2="207.228.235.252"
+vpsuslaxkube2p="22"
+vpsgernuekube3="5.189.138.17"
+vpsgernuekube3p="22"
+vpsuschikube4="172.245.128.49"
+vpsuschikube4p="22"
 
 ### alias machines
 # vps-us-ny-kube-1
-alias _vps1='_deploy2 "${vps-us-ny-kube-1p}" root "${vps-us-ny-kube-1}" ; _ssh2 "${vps-us-ny-kube-1}" root "${vps-us-ny-kube-1p}"'
+alias _vps1='_deploy2 "${vpsusnykube1p}" root "${vpsusnykube1}" ; _ssh2 "${vpsusnykube1}" root "${vpsusnykube1p}"'
 
 # vps-us-lax-kube-2
 alias _vps2='_deploy2 "${vps-us-lax-kube-2p}" root "${vps-us-lax-kube-2}" ; _ssh2 "${vps-us-lax-kube-2}" root "${vps-us-lax-kube-2p}"'
