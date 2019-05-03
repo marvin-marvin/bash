@@ -134,6 +134,8 @@ export LS_COLORS
 ## SSH command after login - access
 if [[ "$HOSTNAME" == "vps-ger-fra-1" ]] ; then
     _sshp;
-    eval `ssh-agent`;
-    ssh-add ~/bash-keys/acc_rsa;
+    if ps ax | grep -v grep | grep -v $0 | grep ssh-agent > /dev/null
+        then
+            eval `ssh-agent`;
+            ssh-add ~/bash-keys/acc_rsa;
 fi
