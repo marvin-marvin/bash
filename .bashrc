@@ -9,7 +9,7 @@ shopt -s globstar
 ### check winsize
 shopt -s checkwinsize
 
-### kein Error bei vwu start und rsync
+### kein Error bei rsync
 [[ $- != *i* ]] && return
 
 umask 0002
@@ -21,11 +21,8 @@ export history_control=ignoredups
 export MANPAGER=nano
 export PATH=/usr/local/opt/coreutils/libexec/gnubin:/bin:/usr/bin:/usr/sbin:/usr/bin/X11:/usr/local/bin:/usr/kerberos/bin:/usr/kerberos/sbin:/usr/kerberos/bin:/sbin:/opt/cloudian/bin:/usr/local/go/bin:$GOPATH/bin:.
 export SHELL=/bin/bash
-#export SHELL=/usr/local/bin/bash-terminal-app
 export EDITOR="/usr/bin/nano"
-
 export GOPATH=$HOME/go
-
 
 ### Color Prompt
 unset LS_COLORS
@@ -37,10 +34,6 @@ COLOR_GREY="\[\033[1;33m\]"
 
 ### User definition
 case ${USER} in
-marvin)
-# green
-COLOR_USER="\[\033[1;32m\]"
-;;
 root)
 # red
 COLOR_USER="\[\033[1;31m\]"
@@ -52,18 +45,9 @@ COLOR_USER="\[\033[1;36m\]"
 esac
 
 case ${HOSTNAME} in
-log*)
+vps*)
 # green
 COLOR_WS="\[\033[1;32m\]"
-;;
-*node*)
-# red
-COLOR_WS="\[\033[1;31m\]"
-;;
-marvins-mbp*)
-# yellow
-COLOR_WS="\[\033[1;38m\]"
-export HOSTNAME=marvins-mbp
 ;;
 *)
 # light blue
@@ -74,57 +58,31 @@ esac
 ### Update Window Title
 echo -ne "\033]0;${USER}@${HOSTNAME}\007"
 
-### machines private
-vpn="192.168.1.97"
-vpnp="22"
-nfs="192.168.1.254"
-nfsp="22"
-piholebak="192.168.1.98"
-piholebakp="22"
-timemachine="192.168.1.99"
-timemachinep="22"
-prox1="192.168.1.100"
-prox1p="22"
-docker1="192.168.1.101"
-docker1p="22"
-docker2="192.168.1.102"
-docker2p="22"
-docker3="192.168.1.103"
-docker3p="22"
-vpsdc1="5.230.24.151"
-vpsdc1p="52817"
-vpsdc2="173.249.58.247"
-vpsdc2p="52818"
+### machines
+vps-us-ny-kube-1="23.95.61.166"
+vps-us-ny-kube-1p="22"
+vps-us-lax-kube-2="207.228.235.252"
+vps-us-lax-kube-2p="22"
+vps-ger-nue-kube-3="5.189.138.17"
+vps-ger-nue-kube-3p="22"
+vps-us-chi-kube-4="172.245.128.49"
+vps-us-chi-kube-4p="22"
 
-### ssh machines private
-alias _vpn='_deploy2 "${vpnp}" root "${vpn}" ; _ssh2 "${vpn}" root "${vpnp}"'
-alias _nfs='_deploy2 "${nfsp}" root "${nfs}" ; _ssh2 "${nfs}" root "${nfsp}"'
-alias _pihole='_deploy2 "${piholebakp}" root "${piholebak}" ; _ssh2 "${piholebak}" root "${piholebakp}"'
-alias _time='_deploy2 "${timemachinep}" root "${timemachine}" ; _ssh2 "${timemachine}" root "${timemachinep}"'
-alias _prox1='_deploy2 "${prox1p}" root "${prox1}" ; _ssh2 "${prox1}" root "${prox1p}"'
-alias _dock1='_deploy2 "${docker1p}" root "${docker1}" ; _ssh2 "${docker1}" root "${docker1p}"'
-alias _dock2='_deploy2 "${docker2p}" root "${docker2}" ; _ssh2 "${docker2}" root "${docker2p}"'
-alias _dock3='_deploy2 "${docker3p}" root "${docker3}" ; _ssh2 "${docker3}" root "${docker3p}"'
-alias _vps1='_deploy2 "${vpsdc1p}" root "${vpsdc1}" ; _ssh2 "${vpsdc1}" root "${vpsdc1p}"'
-alias _vps2='_deploy2 "${vpsdc2p}" root "${vpsdc2}" ; _ssh2 "${vpsdc2}" root "${vpsdc2p}"'
-
-alias cs3='aws s3 --endpoint-url=http://s3-support.cloudian.com'
+### alias machines
+alias _vps-us-ny-kube-1='_deploy2 "${vps-us-ny-kube-1p}" root "${vps-us-ny-kube-1}" ; _ssh2 "${vps-us-ny-kube-1}" root "${vps-us-ny-kube-1p}"'
+alias _vps-us-lax-kube-2='_deploy2 "${vps-us-lax-kube-2p}" root "${vps-us-lax-kube-2}" ; _ssh2 "${vps-us-lax-kube-2}" root "${vps-us-lax-kube-2p}"'
+alias _vps-ger-nue-kube-3='_deploy2 "${vps-ger-nue-kube-3p}" root "${vps-ger-nue-kube-3}" ; _ssh2 "${vps-ger-nue-kube-3}" root "${vps-ger-nue-kube-3p}"'
+alias _vps-us-chi-kube-4='_deploy2 "${vps-us-chi-kube-4p}" root "${vps-us-chi-kube-4}" ; _ssh2 "${vps-us-chi-kube-4}" root "${vps-us-chi-kube-4p}"'
 
 ### help
 _sshp () {
 echo ""
 echo -e "\e[1m_sshp:\e[0m"
 echo ""
-echo "_vpn"
-echo "_nfs"
-echo "_pihole"
-echo "_time"
-echo "_prox1"
-echo "_dock1"
-echo "_dock2"
-echo "_dock3"
 echo "_vps1"
-#echo "_vps2"
+echo "_vps2"
+echo "_vps3"
+echo "_vps4"
 }
 
 ### Misc
@@ -148,10 +106,6 @@ PROMPT_COMMAND=_exitstatus
 #_specialssh () { ssh -o LogLevel=QUIET; }
 _ssh1 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -X "$2"@"$1" -t "${BASH_FILER}/.bash"; _title; }
 _ssh2 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /root/keys/id_rsa -X "$2"@"$1" -t "${BASH_FILER}/.bash"; _title; }
-_ssh3 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /root/keys/log-server_techsupport.pem -X "$2"@"$1" -t "${BASH_FILER}/.bash"; _title; }
-_ssh4 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /root/keys/log-server_mklingspohn.pem -X "$2"@"$1" -t "${BASH_FILER}/.bash"; _title; }
-_ssh5 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /root/keys/cfn-shared.pem -X "$2"@"$1" -t "${BASH_FILER}/.bash"; _title; }
-#_sshr () { rsync -avx -e 'ssh -p "$2"' /home/pi/bash pi@"$1":/home/pi; ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -X root@"$1" -t "${BASH_FILER}/marvin"; _title; }
 _sshc () { CLIENT=$1; shift; ssh -q -X root@"$CLIENT" $*; }
 _rt () { eval $(ssh-agent -s); ssh-add;stty eof  '?';alias logout='kill $(echo $SSH_AGENT_PID);exit';}
 _title () { echo -ne "\033]0;${USER}@${HOSTNAME}\007"; }
