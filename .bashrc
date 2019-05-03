@@ -107,8 +107,8 @@ PROMPT_COMMAND=_exitstatus
 _ssh1 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -X "$2"@"$1" -t "${BASH_FILER}/.bash"; _title; }
 _ssh2 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -X "$2"@"$1" -t "${BASH_FILER}/.bash"; _title; }
 _title () { echo -ne "\033]0;${USER}@${HOSTNAME}\007"; }
-_deploy1 () { rsync -avxL --delete -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p "$1"" ~/.bash* "$2"@"$3":/tmp >> /root/log/bash_deploy.log; }
-_deploy2 () { rsync -avxL --delete -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /root/keys/id_rsa -p "$1"" ~/.bash* "$2"@"$3":/tmp >> /root/log/bash_deploy.log; }
+_deploy1 () { rsync -avxL --delete -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p "$1"" ~/.bash* "$2"@"$3":/tmp >> /tmp/bash_deploy.log; }
+_deploy2 () { rsync -avxL --delete -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /root/keys/id_rsa -p "$1"" ~/.bash* "$2"@"$3":/tmp >> /tmp/bash_deploy.log; }
 
 _exitstatus () { 
 if [ $? == 0 ]; then
