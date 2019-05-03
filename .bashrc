@@ -70,16 +70,16 @@ vpsuschikube4p="22"
 
 ### alias machines
 # vps-us-ny-kube-1
-alias _vps1='_deploy2 "${vpsusnykube1p}" root "${vpsusnykube1}" ; _ssh2 "${vpsusnykube1}" root "${vpsusnykube1p}"'
+alias _kube1='_deploy2 "${vpsusnykube1p}" root "${vpsusnykube1}" ; _ssh2 "${vpsusnykube1}" root "${vpsusnykube1p}"'
 
 # vps-us-lax-kube-2
-alias _vps2='_deploy2 "${vpsuslaxkube2p}" root "${vpsuslaxkube2}" ; _ssh2 "${vpsuslaxkube2}" root "${vpsuslaxkube2p}"'
+alias _kube2='_deploy2 "${vpsuslaxkube2p}" root "${vpsuslaxkube2}" ; _ssh2 "${vpsuslaxkube2}" root "${vpsuslaxkube2p}"'
 
 # vps-ger-nue-kube-3
-alias _vps3='_deploy2 "${vpsgernuekube3p}" root "${vpsgernuekube3}" ; _ssh2 "${vpsgernuekube3}" root "${vpsgernuekube3p}"'
+alias _kube3='_deploy2 "${vpsgernuekube3p}" root "${vpsgernuekube3}" ; _ssh2 "${vpsgernuekube3}" root "${vpsgernuekube3p}"'
 
 # vps-us-chi-kube-4
-alias _vps4='_deploy2 "${vpsuschikube4p}" root "${vpsuschikube4}" ; _ssh2 "${vpsuschikube4}" root "${vpsuschikube4p}"'
+alias _kube4='_deploy2 "${vpsuschikube4p}" root "${vpsuschikube4}" ; _ssh2 "${vpsuschikube4}" root "${vpsuschikube4p}"'
 
 # other
 alias _other='echo "_deploy1 <port> root <host> OR _ssh1 <host> root <port>"'
@@ -89,10 +89,10 @@ _sshp () {
 echo ""
 echo -e "\e[1m_sshp:\e[0m"
 echo ""
-echo "_vps1 - vps-us-ny-kube-1"
-echo "_vps2 - vps-us-lax-kube-2"
-echo "_vps3 - vps-ger-nue-kube-3"
-echo "_vps4 - vps-us-chi-kube-4"
+echo "_kube1 - vps-us-ny-kube-1"
+echo "_kube2 - vps-us-lax-kube-2"
+echo "_kube3 - vps-ger-nue-kube-3"
+echo "_kube4 - vps-us-chi-kube-4"
 echo ""
 echo "_other"
 }
@@ -114,10 +114,10 @@ PROMPT_COMMAND=_exitstatus
 
 ### Functions
 _ssh1 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -X "$2"@"$1" -t "${BASH_FILER}/.bash"; _title; }
-_ssh2 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -X "$2"@"$1" -t "${BASH_FILER}/.bash"; _title; }
+_ssh2 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/keys/id_rsa -X "$2"@"$1" -t "${BASH_FILER}/.bash"; _title; }
 _title () { echo -ne "\033]0;${USER}@${HOSTNAME}\007"; }
 _deploy1 () { rsync -avxL --delete -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p "$1"" ~/.bash* "$2"@"$3":/tmp >> /tmp/bash_deploy.log; }
-_deploy2 () { rsync -avxL --delete -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p "$1"" ~/.bash* "$2"@"$3":/tmp >> /tmp/bash_deploy.log; }
+_deploy2 () { rsync -avxL --delete -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/keys/id_rsa -p "$1"" ~/.bash* "$2"@"$3":/tmp >> /tmp/bash_deploy.log; }
 
 _exitstatus () { 
 if [ $? == 0 ]; then
