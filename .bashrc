@@ -73,13 +73,13 @@ vpsuschikube4p="22"
 alias _vps1='_deploy2 "${vpsusnykube1p}" root "${vpsusnykube1}" ; _ssh2 "${vpsusnykube1}" root "${vpsusnykube1p}"'
 
 # vps-us-lax-kube-2
-alias _vps2='_deploy2 "${vps-us-lax-kube-2p}" root "${vps-us-lax-kube-2}" ; _ssh2 "${vps-us-lax-kube-2}" root "${vps-us-lax-kube-2p}"'
+alias _vps2='_deploy2 "${vpsuslaxkube2p}" root "${vpsuslaxkube2}" ; _ssh2 "${vpsuslaxkube2}" root "${vpsuslaxkube2p}"'
 
 # vps-ger-nue-kube-3
-alias _vps3='_deploy2 "${vps-ger-nue-kube-3p}" root "${vps-ger-nue-kube-3}" ; _ssh2 "${vps-ger-nue-kube-3}" root "${vps-ger-nue-kube-3p}"'
+alias _vps3='_deploy2 "${vpsgernuekube3p}" root "${vpsgernuekube3}" ; _ssh2 "${vpsgernuekube3}" root "${vpsgernuekube3p}"'
 
 # vps-us-chi-kube-4
-alias _vps4='_deploy2 "${vps-us-chi-kube-4p}" root "${vps-us-chi-kube-4}" ; _ssh2 "${vps-us-chi-kube-4}" root "${vps-us-chi-kube-4p}"'
+alias _vps4='_deploy2 "${vpsuschikube4p}" root "${vpsuschikube4}" ; _ssh2 "${vpsuschikube4}" root "${vpsuschikube4p}"'
 
 # other
 alias _other='echo "_deploy1 <port> root <host> OR _ssh1 <host> root <port>"'
@@ -89,10 +89,12 @@ _sshp () {
 echo ""
 echo -e "\e[1m_sshp:\e[0m"
 echo ""
-echo "_vps1"
-echo "_vps2"
-echo "_vps3"
-echo "_vps4"
+echo "_vps1 - vps-us-ny-kube-1"
+echo "_vps2 - vps-us-lax-kube-2"
+echo "_vps3 - vps-ger-nue-kube-3"
+echo "_vps4 - vps-us-chi-kube-4"
+echo ""
+echo "_other"
 }
 
 ### Misc
