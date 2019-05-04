@@ -51,8 +51,8 @@ vps-ger-fra-1)
 COLOR_WS="\[\033[1;32m\]"
 ;;
 *kube*)
-# red
-COLOR_WS="\[\033[1;31m\]"
+# yellow
+COLOR_WS="\[\033[1;33m\]"
 ;;
 *)
 # light blue
