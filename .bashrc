@@ -44,10 +44,15 @@ COLOR_USER="\[\033[1;36m\]"
 ;;
 esac
 
+### Hostname color
 case ${HOSTNAME} in
-vps*)
+vps-ger-fra-1)
 # green
 COLOR_WS="\[\033[1;32m\]"
+;;
+*kube*)
+# red
+COLOR_WS="\[\033[1;31m\]"
 ;;
 *)
 # light blue
