@@ -51,12 +51,12 @@ vps-ger-fra-1)
 COLOR_WS="\[\033[1;32m\]"
 ;;
 *kube*)
-# yellow
-COLOR_WS="\[\033[1;33m\]"
-;;
-*)
 # light blue
 COLOR_WS="\[\033[1;36m\]"
+;;
+*)
+# yellow
+COLOR_WS="\[\033[1;33m\]"
 ;;
 esac
 
