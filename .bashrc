@@ -65,13 +65,13 @@ echo -ne "\033]0;${USER}@${HOSTNAME}\007"
 
 ### machines
 vpsusnykube1="23.95.61.166"
-vpsusnykube1p="22"
+vpsusnykube1p="52817"
 vpsuslaxkube2="207.228.235.252"
-vpsuslaxkube2p="22"
+vpsuslaxkube2p="52817"
 vpsgernuekube3="5.189.138.17"
-vpsgernuekube3p="22"
+vpsgernuekube3p="52817"
 vpsuschikube4="172.245.128.49"
-vpsuschikube4p="22"
+vpsuschikube4p="52817"
 
 ### alias machines
 # vps-us-ny-kube-1
