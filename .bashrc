@@ -144,7 +144,7 @@ if [[ "$HOSTNAME" == "vps-ger-fra-1" ]] ; then
     _sshp;
     source ~/ssh-find-agent/ssh-find-agent.sh
     set_ssh_agent_socket
-    fail2ban-client status sshd
+    #fail2ban-client status sshd
     else
         fail2ban-client status sshd
 fi
