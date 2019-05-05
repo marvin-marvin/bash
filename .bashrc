@@ -3,7 +3,7 @@
 ### Alias sharing
 shopt -s expand_aliases
 
-### bash 4 recursive
+### bash 4 recursive 
 shopt -s globstar
 
 ### check winsize
