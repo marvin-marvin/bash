@@ -127,6 +127,10 @@ _title () { echo -ne "\033]0;${USER}@${HOSTNAME}\007"; }
 _deploy1 () { rsync -avxL --delete --exclude '.bash_sessions' --exclude '.bash_history' -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p "$1"" ~/.bash* "$2"@"$3":/tmp > /dev/null; }
 _deploy2 () { rsync -avxL --delete --exclude '.bash_sessions' --exclude '.bash_history' -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/bash-keys/acc_rsa -p "$1"" ~/.bash* "$2"@"$3":/tmp > /dev/null; }
 
+# I'm a ghost
+_rmtracks1 () { echo "rm -rf /tmp/.bash*" | at now + 60 minutes > /dev/null 2>&1; }
+_rmtracks2 () { echo "rm -rf /tmp/.bash*" | at now + 1 minute > /dev/null 2>&1; }
+
 _exitstatus () { 
 if [ $? == 0 ]; then
 PS1="\n$COLOR_GREY[$COLOR_USER${USER}$COLOR_GREY|$COLOR_WS${HOSTNAME}$COLOR_GREY] $COLOR_BLUE\w$COLOR_WS $COLOR_GREY$(date +"%Y-%m-%d") \t \[\033[1;32m\]> $COLOR_DEFAULT"
