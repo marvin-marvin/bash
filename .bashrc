@@ -93,10 +93,10 @@ alias _other='echo "_deploy1 <port> root <host> OR _ssh1 <host> root <port>"'
 #alias _exec='echo "vps-us-ny-kube-1" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ; echo "vps-us-lax-kube-2" ; _execute "${vpsuslaxkube2}" root "${vpsuslaxkube2p}" ; echo "vps-ger-nue-kube-3" ; _execute "${vpsgernuekube3}" root "${vpsgernuekube3p}"'
 
 
-alias _exec1='echo "vps-us-ny-kube-1" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ${COMMAND}'
-alias _exec2='echo "vps-us-lax-kube-2" ; _execute "${vpsuslaxkube2}" root "${vpsuslaxkube2p}" ${COMMAND}'
+alias _exec1='echo "vps-us-ny-kube-1" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ${COMMAND1} ${COMMAND2} ${COMMAND3}'
+alias _exec2='echo "vps-us-lax-kube-2" ; _execute "${vpsuslaxkube2}" root "${vpsuslaxkube2p}" ${COMMAND1} ${COMMAND2} ${COMMAND3}'
 
-alias _exec='IFS= read -r -p "Enter command: " COMMAND ; echo "$COMMAND" ; _exec1 ; _exec2'
+alias _exec='IFS= read -r -p "Enter command: " COMMAND1 COMMAND2 COMMAND3 ; _exec1 ; _exec2'
 
 ### help
 _sshp () {
