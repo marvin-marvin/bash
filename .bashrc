@@ -90,7 +90,7 @@ alias _kube4='_deploy2 "${vpsuschikube4p}" root "${vpsuschikube4}" ; _ssh2 "${vp
 alias _other='echo "_deploy1 <port> root <host> OR _ssh1 <host> root <port>"'
 
 # execute test
-alias _exec1='_execute "${vpsusnykube1}" root "${vpsusnykube1p}" hostname ; systemctl status sshd'
+alias _exec1='_execute "${vpsusnykube1}" root "${vpsusnykube1p}"'
 
 ### help
 _sshp () {
