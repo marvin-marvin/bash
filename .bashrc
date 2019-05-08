@@ -97,7 +97,7 @@ alias _other='echo "_deploy1 <port> root <host> OR _ssh1 <host> root <port>"'
 alias _exec1='echo "vps-us-ny-kube-1" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ${COMMAND}'
 alias _exec2='echo "vps-us-lax-kube-2" ; _execute "${vpsuslaxkube2}" root "${vpsuslaxkube2p}" ${COMMAND}'
 
-alias _exec='read -p "Enter command: " COMMAND ; _exec1 ; _exec2'
+alias _exec='IFS= read -r -p "Enter command: " COMMAND ; _exec1 ; _exec2'
 
 ### help
 _sshp () {
