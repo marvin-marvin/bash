@@ -91,7 +91,7 @@ alias _exec1='echo ; echo -e "\e[1;7mvps-us-ny-kube-1\e[0m" ; _execute "${vpsusn
 alias _exec2='echo ; echo -e "\e[1;7mvps-us-lax-kube-2\e[0m" ; _execute "${vpsuslaxkube2}" root "${vpsuslaxkube2p}" ${COMMAND}'
 alias _exec3='echo ; echo -e "\e[1;7mvps-ger-nue-kube-3\e[0m" ; _execute "${vpsgernuekube3}" root "${vpsgernuekube3p}" ${COMMAND}'
 alias _exec4='echo ; echo -e "\e[1;7mvps-us-chi-kube-4\e[0m" ; _execute "${vpsuschikube4}" root "${vpsuschikube4p}" ${COMMAND}'
-alias _exec='IFS= read -r -p "Enter command: " COMMAND ; _exec1 ; _exec2 ; _exec3 ; _exec4'
+alias _exec='IFS= read -r -p "Enter command: " COMMAND ; _exec1 ; _exec2 ; _exec3 ; _exec4 ; echo'
 
 ### help
 _sshp () {
