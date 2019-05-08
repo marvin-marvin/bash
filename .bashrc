@@ -89,14 +89,12 @@ alias _kube4='_deploy2 "${vpsuschikube4p}" root "${vpsuschikube4}" ; _ssh2 "${vp
 # other
 alias _other='echo "_deploy1 <port> root <host> OR _ssh1 <host> root <port>"'
 
-# execute test
-#alias _exec='echo "vps-us-ny-kube-1" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ; echo "vps-us-lax-kube-2" ; _execute "${vpsuslaxkube2}" root "${vpsuslaxkube2p}" ; echo "vps-ger-nue-kube-3" ; _execute "${vpsgernuekube3}" root "${vpsgernuekube3p}"'
-
-
-alias _exec1='echo "vps-us-ny-kube-1" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ${COMMAND1} ${COMMAND2} ${COMMAND3}'
-alias _exec2='echo "vps-us-lax-kube-2" ; _execute "${vpsuslaxkube2}" root "${vpsuslaxkube2p}" ${COMMAND1} ${COMMAND2} ${COMMAND3}'
-
-alias _exec='IFS= read -r -p "Enter command: " COMMAND1 COMMAND2 COMMAND3 ; _exec1 ; _exec2'
+# execute command on every node
+alias _exec1='echo "vps-us-ny-kube-1" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ${COMMAND}'
+alias _exec2='echo "vps-us-lax-kube-2" ; _execute "${vpsuslaxkube2}" root "${vpsuslaxkube2p}" ${COMMAND}'
+alias _exec3='echo "vps-ger-nue-kube-3" ; _execute "${vpsgernuekube3}" root "${vpsgernuekube3p}" ${COMMAND}'
+alias _exec4='echo "vps-us-chi-kube-4" ; _execute "${vpsuschikube4}" root "${vpsuschikube4p}" ${COMMAND}'
+alias _exec='IFS= read -r -p "Enter command: " COMMAND ; _exec1 ; _exec2 ; _exec3 ; _exec4'
 
 ### help
 _sshp () {
@@ -108,6 +106,7 @@ echo "_kube2 - vps-us-lax-kube-2"
 echo "_kube3 - vps-ger-nue-kube-3"
 echo "_kube4 - vps-us-chi-kube-4"
 echo ""
+echo "_exec <command>"
 echo "_other"
 }
 
