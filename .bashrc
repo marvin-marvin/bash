@@ -64,8 +64,7 @@ esac
 echo -ne "\033]0;${USER}@${HOSTNAME}\007"
 
 ### machines
-#vpsusnykube1="23.95.61.166"
-vpsusnykube1="10.0.0.1"
+vpsusnykube1="23.95.61.166"
 vpsusnykube1p="52817"
 vpsuslaxkube2="207.228.235.252"
 vpsuslaxkube2p="52817"
