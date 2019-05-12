@@ -3,6 +3,9 @@
 ### Alias sharing
 shopt -s expand_aliases
 
+# history improvement
+HISTTIMEFORMAT='I ran this at: %d/%m/%y %T '
+
 ### bash 4 recursive 
 shopt -s globstar
 
