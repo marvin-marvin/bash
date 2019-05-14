@@ -94,13 +94,13 @@ alias _kube4='_deploy2 "${vpsuschikube4p}" root "${vpsuschikube4}" ; _ssh2 "${vp
 # vps-us-chi-kube-4
 alias _kube100='_deploy2 "${dsgerbskube100p}" root "${dsgerbskube100}" ; _ssh2 "${dsgerbskube100}" root "${dsgerbskube100p}"'
 
-# execute command on every node
-alias _exec1='echo ; echo -e "\e[1;7mvps-us-ny-kube-1\e[0m" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ${COMMAND} ; echo'
-alias _exec2='echo ; echo -e "\e[1;7mvps-us-lax-kube-2\e[0m" ; _execute "${vpsuslaxkube2}" root "${vpsuslaxkube2p}" ${COMMAND} ; echo'
-alias _exec3='echo ; echo -e "\e[1;7mvps-ger-nue-kube-3\e[0m" ; _execute "${vpsgernuekube3}" root "${vpsgernuekube3p}" ${COMMAND} ; echo'
-alias _exec4='echo ; echo -e "\e[1;7mvps-us-chi-kube-4\e[0m" ; _execute "${vpsuschikube4}" root "${vpsuschikube4p}" ${COMMAND} ; echo'
-alias _exec100='echo ; echo -e "\e[1;7mds-ger-bs-kube-100\e[0m" ; _execute "${dsgerbskube100}" root "${dsgerbskube100p}" ${COMMAND} ; echo'
-alias _exec='IFS= read -r -p "Enter command: " COMMAND ; _exec1 ; _exec2 ; _exec3 ; _exec4 ; _exec100'
+# execute command on every node - single
+alias _exec1='echo ; echo -e "\e[1;7mvps-us-ny-kube-1\e[0m" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ; echo'
+alias _exec2='echo ; echo -e "\e[1;7mvps-us-lax-kube-2\e[0m" ; _execute "${vpsuslaxkube2}" root "${vpsuslaxkube2p}" ; echo'
+alias _exec3='echo ; echo -e "\e[1;7mvps-ger-nue-kube-3\e[0m" ; _execute "${vpsgernuekube3}" root "${vpsgernuekube3p}" ; echo'
+alias _exec4='echo ; echo -e "\e[1;7mvps-us-chi-kube-4\e[0m" ; _execute "${vpsuschikube4}" root "${vpsuschikube4p}" ; echo'
+alias _exec100='echo ; echo -e "\e[1;7mds-ger-bs-kube-100\e[0m" ; _execute "${dsgerbskube100}" root "${dsgerbskube100p}" ; echo'
+alias _exec='_exec1 ; _exec2 ; _exec3 ; _exec4 ; _exec100'
 
 ### help
 _sshp () {
@@ -113,9 +113,11 @@ echo "_kube3 - vps-ger-nue-kube-3"
 echo "_kube4 - vps-us-chi-kube-4"
 echo "_kube100 - ds-ger-bs-kube-100"
 echo ""
-echo "_exec <command>"
+echo "_exec - execute sh"
+echo ""
 echo "_deploy1 <port> root <host>"
 echo "_ssh1 <host> root <port>"
+echo ""
 }
 
 ### Misc
@@ -142,9 +144,7 @@ _ssh2 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o Stri
 _title () { echo -ne "\033]0;${USER}@${HOSTNAME}\007"; }
 _deploy1 () { rsync -avxL --delete --exclude '.bash_sessions' --exclude '.bash_history' -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p "$1"" ~/.bash* "$2"@"$3":/tmp > /dev/null; }
 _deploy2 () { rsync -avxL --delete --exclude '.bash_sessions' --exclude '.bash_history' -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/bash-keys/acc_rsa -p "$1"" ~/.bash* "$2"@"$3":/tmp > /dev/null; }
-_execute () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/bash-keys/acc_rsa -X "$2"@"$1" -t "$4 $5 $6" 2> /dev/null ; _title ; }
-
-
+_execute () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/bash-keys/acc_rsa -X "$2"@"$1" -t "${BASH_FILER}/.bash_exec.sh" 2> /dev/null ; _title ; }
 
 # I'm a ghost
 _rmtracks1 () { echo "rm -rf /tmp/.bash*" | at now + 60 minutes > /dev/null 2>&1; }
