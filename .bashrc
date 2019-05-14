@@ -117,7 +117,8 @@ echo "_exec - execute sh"
 echo ""
 echo "_deploy1 <port> root <host>"
 echo "_ssh1 <host> root <port>"
-echo "Shell: " $SHLVL
+echo ""
+echo "Shell No: " $SHLVL
 }
 
 ### Misc
@@ -165,6 +166,7 @@ export LS_COLORS
 ## SSH command after login - access
 if [[ "$HOSTNAME" == "vps-ger-fra-1" ]] ; then
     source ~/ssh-find-agent/ssh-find-agent.sh
+    echo ""
     set_ssh_agent_socket
     cls ; _sshp;
     else
