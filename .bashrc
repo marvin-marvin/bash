@@ -118,7 +118,7 @@ echo ""
 echo "_deploy1 <port> root <host>"
 echo "_ssh1 <host> root <port>"
 echo ""
-echo "Shell No: " $SHLVL
+echo "Shell No:" $SHLVL
 }
 
 ### Misc
