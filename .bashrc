@@ -117,7 +117,7 @@ echo "_exec - execute sh"
 echo ""
 echo "_deploy1 <port> root <host>"
 echo "_ssh1 <host> root <port>"
-echo ""
+echo "Shell: " $SHLVL
 }
 
 ### Misc
