@@ -119,6 +119,9 @@ echo "_deploy1 <port> root <host>"
 echo "_ssh1 <host> root <port>"
 echo ""
 echo "Shell No:" $SHLVL
+echo ""
+echo -e "\e[1m_kubectl:\e[0m"
+kubectl get nodes
 }
 
 ### Misc
@@ -170,9 +173,6 @@ if [[ "$HOSTNAME" == "vps-ger-fra-1" ]] ; then
     set_ssh_agent_socket
     cls
     _sshp
-    echo ""
-    kubectl get nodes
-    echo ""
     else
        :
 fi
