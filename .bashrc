@@ -168,7 +168,11 @@ if [[ "$HOSTNAME" == "vps-ger-fra-1" ]] ; then
     source ~/ssh-find-agent/ssh-find-agent.sh
     echo ""
     set_ssh_agent_socket
-    cls ; _sshp;
+    cls
+    _sshp
+    echo ""
+    kubectl get nodes
+    echo ""
     else
        :
 fi
