@@ -107,7 +107,6 @@ alias _exec='_exec1 ; _exec2 ; _exec3 ; _exec4 ; _exec100'
 
 # k8s stuff
 source <(kubectl completion bash) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
-echo "source <(kubectl completion bash)" >> ~/.bashrc # add autocomplete permanently to your bash shell.
 alias k=kubectl
 complete -F __start_kubectl k
 
