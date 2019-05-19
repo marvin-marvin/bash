@@ -124,6 +124,7 @@ echo ""
 echo -e "\e[1mkubectl get nodes:\e[0m"
 echo ""
 kubectl get nodes
+echo ""
 }
 
 ### Misc
