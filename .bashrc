@@ -102,6 +102,12 @@ alias _exec4='echo ; echo -e "\e[1;7mvps-us-chi-kube-4\e[0m" ; _deploy2 "${vpsus
 alias _exec100='echo ; echo -e "\e[1;7mds-ger-bs-kube-100\e[0m" ; _deploy2 "${dsgerbskube100p}" root "${dsgerbskube100}" ; _execute "${dsgerbskube100}" root "${dsgerbskube100p}" ; echo'
 alias _exec='_exec1 ; _exec2 ; _exec3 ; _exec4 ; _exec100'
 
+# k8s stuff
+source <(kubectl completion bash) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
+echo "source <(kubectl completion bash)" >> ~/.bashrc # add autocomplete permanently to your bash shell.
+alias k=kubectl
+complete -F __start_kubectl k
+
 ### help
 _sshp () {
 clear
