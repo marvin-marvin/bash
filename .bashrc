@@ -120,7 +120,8 @@ echo "_ssh1 <host> root <port>"
 echo ""
 echo "Shell No:" $SHLVL
 echo ""
-echo -e "\e[1m_kubectl:\e[0m"
+echo -e "\e[1mkubectl get nodes:\e[0m"
+echo ""
 kubectl get nodes
 }
 
