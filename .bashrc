@@ -104,7 +104,7 @@ alias _exec='_exec1 ; _exec2 ; _exec3 ; _exec4 ; _exec100'
 
 ### help
 _sshp () {
-cls
+clear
 echo ""
 echo -e "\e[1m_sshp:\e[0m"
 echo ""
@@ -117,6 +117,7 @@ echo ""
 echo "_exec - execute sh"
 echo "_deploy1 <port> root <host>"
 echo "_ssh1 <host> root <port>"
+echo "transfer <file>"
 echo ""
 echo "Shell No:" $SHLVL
 echo ""
