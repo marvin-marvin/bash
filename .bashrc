@@ -104,6 +104,7 @@ alias _exec='_exec1 ; _exec2 ; _exec3 ; _exec4 ; _exec100'
 
 ### help
 _sshp () {
+cls
 echo ""
 echo -e "\e[1m_sshp:\e[0m"
 echo ""
@@ -172,7 +173,6 @@ if [[ "$HOSTNAME" == "vps-ger-fra-1" ]] ; then
     source ~/ssh-find-agent/ssh-find-agent.sh
     echo ""
     set_ssh_agent_socket
-    cls
     _sshp
     else
        :
