@@ -105,7 +105,7 @@ alias _exec2='echo ; echo -e "\e[1;7mvps-us-lax-kube-2\e[0m" ; _deploy2 "${vpsus
 alias _exec3='echo ; echo -e "\e[1;7mvps-ger-nue-kube-3\e[0m" ; _deploy2 "${vpsgernuekube3p}" root "${vpsgernuekube3}" ; _execute "${vpsgernuekube3}" root "${vpsgernuekube3p}" ; echo'
 alias _exec4='echo ; echo -e "\e[1;7mvps-us-chi-kube-4\e[0m" ; _deploy2 "${vpsuschikube4p}" root "${vpsuschikube4}" ; _execute "${vpsuschikube4}" root "${vpsuschikube4p}" ; echo'
 alias _exec100='echo ; echo -e "\e[1;7mds-ger-bs-kube-100\e[0m" ; _deploy2 "${dsgerbskube100p}" root "${dsgerbskube100}" ; _execute "${dsgerbskube100}" root "${dsgerbskube100p}" ; echo'
-alias _exec200='echo ; echo -e "\e[1;7mdvps-ger-bs-kubectl-200\e[0m" ; _deploy2 "${vpsgerbskubectl200p}" root "${vpsgerbskubectl200}" ; _execute "${vpsgerbskubectl200}" root "${vpsgerbskubectl200p}" ; echo'
+alias _exec200='echo ; echo -e "\e[1;7mvps-ger-bs-kubectl-200\e[0m" ; _deploy2 "${vpsgerbskubectl200p}" root "${vpsgerbskubectl200}" ; _execute "${vpsgerbskubectl200}" root "${vpsgerbskubectl200p}" ; echo'
 alias _exec='_exec1 ; _exec2 ; _exec3 ; _exec4 ; _exec100 ; _exec200'
 
 # k8s stuff
@@ -119,13 +119,13 @@ clear
 echo ""
 echo -e "\e[1m_sshp:\e[0m"
 echo ""
-echo "_kube200 - vps-ger-bs-kubectl-200"
-echo ""
 echo "_kube1   - vps-us-ny-kube-1"
 echo "_kube2   - vps-us-lax-kube-2"
 echo "_kube3   - vps-ger-nue-kube-3"
 echo "_kube4   - vps-us-chi-kube-4"
 echo "_kube100 - ds-ger-bs-kube-100"
+echo ""
+echo "_kube200 - vps-ger-bs-kubectl-200"
 echo ""
 echo "_exec - execute sh"
 echo "_deploy1 <port> root <host>"
