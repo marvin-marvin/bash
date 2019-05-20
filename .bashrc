@@ -6,9 +6,6 @@ shopt -s expand_aliases
 # history improvement
 HISTTIMEFORMAT='I ran this at: %d/%m/%y %T '
 
-# kube cfg
-KUBECONFIG=~/kubeadm-cfg/config
-
 ### bash 4 recursive 
 shopt -s globstar
 
@@ -80,6 +77,8 @@ vpsuschikube4="172.245.128.49"
 vpsuschikube4p="52817"
 dsgerbskube100="home.marvinmarvin.de"
 dsgerbskube100p="52817"
+vpsgerbskubectl200="home.marvinmarvin.de"
+vpsgerbskubectl200p="52818"
 
 ### alias machines
 # vps-us-ny-kube-1
@@ -94,8 +93,11 @@ alias _kube3='_deploy2 "${vpsgernuekube3p}" root "${vpsgernuekube3}" ; _ssh2 "${
 # vps-us-chi-kube-4
 alias _kube4='_deploy2 "${vpsuschikube4p}" root "${vpsuschikube4}" ; _ssh2 "${vpsuschikube4}" root "${vpsuschikube4p}"'
 
-# vps-us-chi-kube-4
+# ds-ger-bs-kube-100
 alias _kube100='_deploy2 "${dsgerbskube100p}" root "${dsgerbskube100}" ; _ssh2 "${dsgerbskube100}" root "${dsgerbskube100p}"'
+
+# vps-ger-bs-kubectl-200
+alias _kube100='_deploy2 "${vpsgerbskubectl200p}" root "${vpsgerbskubectl200}" ; _ssh2 "${vpsgerbskubectl200}" root "${vpsgerbskubectl200p}"'
 
 # execute command on every node - single
 alias _exec1='echo ; echo -e "\e[1;7mvps-us-ny-kube-1\e[0m" ; _deploy2 "${vpsusnykube1p}" root "${vpsusnykube1}" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ; echo'
@@ -103,7 +105,8 @@ alias _exec2='echo ; echo -e "\e[1;7mvps-us-lax-kube-2\e[0m" ; _deploy2 "${vpsus
 alias _exec3='echo ; echo -e "\e[1;7mvps-ger-nue-kube-3\e[0m" ; _deploy2 "${vpsgernuekube3p}" root "${vpsgernuekube3}" ; _execute "${vpsgernuekube3}" root "${vpsgernuekube3p}" ; echo'
 alias _exec4='echo ; echo -e "\e[1;7mvps-us-chi-kube-4\e[0m" ; _deploy2 "${vpsuschikube4p}" root "${vpsuschikube4}" ; _execute "${vpsuschikube4}" root "${vpsuschikube4p}" ; echo'
 alias _exec100='echo ; echo -e "\e[1;7mds-ger-bs-kube-100\e[0m" ; _deploy2 "${dsgerbskube100p}" root "${dsgerbskube100}" ; _execute "${dsgerbskube100}" root "${dsgerbskube100p}" ; echo'
-alias _exec='_exec1 ; _exec2 ; _exec3 ; _exec4 ; _exec100'
+alias _exec200='echo ; echo -e "\e[1;7mdvps-ger-bs-kubectl-200\e[0m" ; _deploy2 "${vpsgerbskubectl200p}" root "${vpsgerbskubectl200}" ; _execute "${vpsgerbskubectl200}" root "${vpsgerbskubectl200p}" ; echo'
+alias _exec='_exec1 ; _exec2 ; _exec3 ; _exec4 ; _exec100 ; _exec200'
 
 # k8s stuff
 source <(kubectl completion bash) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
@@ -115,6 +118,8 @@ _sshp () {
 clear
 echo ""
 echo -e "\e[1m_sshp:\e[0m"
+echo ""
+echo "_kube200 - vps-ger-bs-kubectl-200"
 echo ""
 echo "_kube1   - vps-us-ny-kube-1"
 echo "_kube2   - vps-us-lax-kube-2"
@@ -128,11 +133,6 @@ echo "_ssh1 <host> root <port>"
 echo "transfer <file>"
 echo ""
 echo "Shell No:" $SHLVL
-echo ""
-echo ""
-echo -e "\e[1mkubectl get nodes:\e[0m"
-echo ""
-kubectl get nodes
 echo ""
 }
 
