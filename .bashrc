@@ -194,6 +194,8 @@ fi
 
 if [[ "$HOSTNAME" == "vps-ger-bs-kubectl-200" ]] ; then
     echo ""
+    kubectl cluster-info | head -n -2
+    echo ""
     kubectl get nodes
     echo ""
     kubectl get pods --all-namespaces
