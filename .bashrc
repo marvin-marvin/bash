@@ -191,3 +191,12 @@ if [[ "$HOSTNAME" == "vps-ger-fra-1" ]] ; then
     else
        :
 fi
+
+if [[ "$HOSTNAME" == "vps-ger-bs-kubectl-200" ]] ; then
+    source ~/ssh-find-agent/ssh-find-agent.sh
+    echo ""
+    kubectl get nodes
+    kubectl get all --all-namespaces
+    else
+       :
+fi
