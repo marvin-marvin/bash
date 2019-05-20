@@ -203,3 +203,11 @@ if [[ "$HOSTNAME" == "vps-ger-bs-kubectl-200" ]] ; then
     else
        :
 fi
+
+if [[ "$HOSTNAME" == "ds-ger-bs-kube-100" ]] ; then
+    clear
+    echo ""
+    virsh list --all
+    else
+       :
+fi
