@@ -193,6 +193,7 @@ if [[ "$HOSTNAME" == "vps-ger-fra-1" ]] ; then
 fi
 
 if [[ "$HOSTNAME" == "vps-ger-bs-kubectl-200" ]] ; then
+    clear
     echo ""
     kubectl cluster-info | head -n -2
     echo ""
