@@ -102,7 +102,7 @@ alias _kube100='_deploy2 "${dsgerbskube100p}" root "${dsgerbskube100}" ; _ssh2 "
 alias _kube200='_deploy2 "${vpsgerbskubectl200p}" root "${vpsgerbskubectl200}" ; _ssh2 "${vpsgerbskubectl200}" root "${vpsgerbskubectl200p}"'
 
 # ds-ger-bs-kube-250
-alias _kube200='_deploy2 "${dsgerbskube250p}" root "${dsgerbskube250}" ; _ssh2 "${dsgerbskube250}" root "${dsgerbskube250p}"'
+alias _kube250='_deploy2 "${dsgerbskube250p}" root "${dsgerbskube250}" ; _ssh2 "${dsgerbskube250}" root "${dsgerbskube250p}"'
 
 # execute command on every node - single
 alias _exec1='echo ; echo -e "\e[1;7mvps-us-ny-kube-1\e[0m" ; _deploy2 "${vpsusnykube1p}" root "${vpsusnykube1}" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ; echo'
