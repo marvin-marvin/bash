@@ -26,6 +26,7 @@ export PATH=/usr/local/opt/coreutils/libexec/gnubin:/bin:/usr/bin:/usr/sbin:/usr
 export SHELL=/bin/bash
 export EDITOR="/usr/bin/nano"
 export GOPATH=$HOME/go
+export ARCH=$(uname -m)
 
 ### Color Prompt
 unset LS_COLORS
