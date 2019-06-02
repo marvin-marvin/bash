@@ -228,6 +228,9 @@ if [[ "$HOSTNAME" == "vps-ger-bs-kubectl-200" ]] ; then
     kubectl get nodes
     echo ""
     kubectl get pods --all-namespaces
+    echo ""
+    kubectl get svc --all-namespaces
+    echo ""
     else
        :
 fi
