@@ -3,14 +3,30 @@
 ### Alias sharing
 shopt -s expand_aliases
 
-# history improvement
-HISTTIMEFORMAT='I ran this at: %d/%m/%y %T '
+# history add date
+HISTTIMEFORMAT='%F %T '
 
-# bash 4 recursive 
+# bash 4 recursive only on version >4.0
 shopt -s globstar
 
 # add history instead of replacing it
 shopt -s histappend
+
+# store big oneliner in one line
+shopt -s cmdhist
+
+# save history after every command
+PROMPT_COMMAND='history -a'
+
+# bigger history
+HISTFILESIZE=1000000
+HISTSIZE=1000000
+
+# history ignore dups and spaces
+HISTCONTROL=ignoreboth
+
+# history ignroe commands
+HISTIGNORE='ls:bg:fg:history'
 
 ### check winsize
 shopt -s checkwinsize
