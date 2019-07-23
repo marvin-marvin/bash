@@ -194,7 +194,7 @@ _deploy2 () { rsync -avxL --delete --exclude '.bash_sessions' --exclude '.bash_h
 _execute () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/bash-keys/acc_rsa -X "$2"@"$1" -t "${BASH_FILER}/exec.sh" 2> /dev/null ; _title ; }
 
 # mkdir + cd into
-function mkdir
+function md
 {
   command mkdir $1 && cd $1
 }
