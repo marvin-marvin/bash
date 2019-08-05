@@ -14,6 +14,7 @@
 #yum update -y
 #reboot
 
+crontab -l
 cat ~/k8s-cfg/pihole/pihole/lan.list
 
 ### EOF
