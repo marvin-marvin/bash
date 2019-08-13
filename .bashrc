@@ -99,8 +99,8 @@ dsgerbskube100="home.marvinmarvin.de"
 dsgerbskube100p="52817"
 #vpsgerbskubectl200="home.marvinmarvin.de"
 #vpsgerbskubectl200p="52818"
-dsgerbskube250="home.marvinmarvin.de"
-dsgerbskube250p="52818"
+#dsgerbskube250="home.marvinmarvin.de"
+#dsgerbskube250p="52818"
 
 ### alias machines
 # vps-us-ny-kube-1
@@ -122,7 +122,7 @@ alias _kube100='_deploy2 "${dsgerbskube100p}" root "${dsgerbskube100}" ; _ssh2 "
 #alias _kube200='_deploy2 "${vpsgerbskubectl200p}" root "${vpsgerbskubectl200}" ; _ssh2 "${vpsgerbskubectl200}" root "${vpsgerbskubectl200p}"'
 
 # ds-ger-bs-kube-250
-alias _kube250='_deploy2 "${dsgerbskube250p}" root "${dsgerbskube250}" ; _ssh2 "${dsgerbskube250}" root "${dsgerbskube250p}"'
+#alias _kube250='_deploy2 "${dsgerbskube250p}" root "${dsgerbskube250}" ; _ssh2 "${dsgerbskube250}" root "${dsgerbskube250p}"'
 
 # execute command on every node - single
 alias _exec1='echo ; echo -e "\e[1;7mvps-us-ny-kube-1\e[0m" ; _deploy2 "${vpsusnykube1p}" root "${vpsusnykube1}" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ; echo'
@@ -131,8 +131,8 @@ alias _exec3='echo ; echo -e "\e[1;7mvps-ger-nue-kube-3\e[0m" ; _deploy2 "${vpsg
 alias _exec4='echo ; echo -e "\e[1;7mvps-us-chi-kube-4\e[0m" ; _deploy2 "${vpsuschikube4p}" root "${vpsuschikube4}" ; _execute "${vpsuschikube4}" root "${vpsuschikube4p}" ; echo'
 alias _exec100='echo ; echo -e "\e[1;7mds-ger-bs-kube-100\e[0m" ; _deploy2 "${dsgerbskube100p}" root "${dsgerbskube100}" ; _execute "${dsgerbskube100}" root "${dsgerbskube100p}" ; echo'
 #alias _exec200='echo ; echo -e "\e[1;7mvps-ger-bs-kubectl-200\e[0m" ; _deploy2 "${vpsgerbskubectl200p}" root "${vpsgerbskubectl200}" ; _execute "${vpsgerbskubectl200}" root "${vpsgerbskubectl200p}" ; echo'
-alias _exec250='echo ; echo -e "\e[1;7mds-ger-bs-kube-250\e[0m" ; _deploy2 "${dsgerbskube250p}" root "${dsgerbskube250}" ; _execute "${dsgerbskube250}" root "${dsgerbskube250p}" ; echo'
-alias _exec='_exec1 ; _exec2 ; _exec3 ; _exec4 ; _exec100 ; _exec250'
+#alias _exec250='echo ; echo -e "\e[1;7mds-ger-bs-kube-250\e[0m" ; _deploy2 "${dsgerbskube250p}" root "${dsgerbskube250}" ; _execute "${dsgerbskube250}" root "${dsgerbskube250p}" ; echo'
+alias _exec='_exec1 ; _exec2 ; _exec3 ; _exec4 ; _exec100'
 
 # k8s stuff
 source <(kubectl completion bash) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
@@ -151,8 +151,6 @@ echo "_kube2   - vps-us-lax-kube-2"
 echo "_kube3   - vps-ger-nue-kube-3"
 echo "_kube4   - vps-us-chi-kube-4"
 echo "_kube100 - ds-ger-bs-kube-100"
-echo ""
-echo "_kube250 - ds-ger-bs-kube-250"
 echo ""
 echo "_exec - execute sh"
 echo "_deploy1 <port> root <host>"
@@ -225,7 +223,7 @@ if [[ "$HOSTNAME" == "vps-ger-fra-1" ]] ; then
        :
 fi
 
-if [[ "$HOSTNAME" == "ds-ger-bs-kube-250" ]] ; then
+if [[ "$HOSTNAME" == "ds-ger-bs-kube-100" ]] ; then
     clear
     echo ""
     kubectl cluster-info | head -n -2
