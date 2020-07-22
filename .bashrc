@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# locale
+export LC_ALL="en_US.UTF-8"
+
 ### Alias sharing
 shopt -s expand_aliases
 
@@ -43,6 +46,7 @@ export history_control=ignoredups
 export MANPAGER=nano
 export PATH=/usr/local/opt/coreutils/libexec/gnubin:/bin:/usr/bin:/usr/sbin:/usr/bin/X11:/usr/local/bin:/usr/kerberos/bin:/usr/kerberos/sbin:/usr/kerberos/bin:/sbin:/go/bin:/usr/local/go/bin:$GOPATH/bin:.
 export SHELL=/bin/bash
+
 export EDITOR="/usr/bin/nano"
 export GOPATH=$HOME/go
 export GOROOT=/usr/lib/go
@@ -70,7 +74,7 @@ esac
 
 ### Hostname color
 case ${HOSTNAME} in
-vps-ger-fra-1)
+DevBox)
 # green
 COLOR_WS="\[\033[1;32m\]"
 ;;
@@ -88,42 +92,17 @@ esac
 echo -ne "\033]0;${USER}@${HOSTNAME}\007"
 
 ### machines
-vpsusnykube1="172.245.26.3"
-vpsusnykube1p="52817"
-vpsuslaxkube2="207.228.235.252"
-vpsuslaxkube2p="52817"
-vpsgernuekube3="5.189.138.17"
-vpsgernuekube3p="52817"
-vpsuschikube4="172.245.128.49"
-vpsuschikube4p="52817"
-dsgerbskube100="asa2p5yik0frat2g.myfritz.net"
-dsgerbskube100p="52817"
-#vpsgerbskubectl200="home.marvinmarvin.de"
-#vpsgerbskubectl200p="52818"
-#dsgerbskube250="home.marvinmarvin.de"
-#dsgerbskube250p="52818"
+kube1="192.168.1.211"
+kube1_p="22"
+kube2="192.168.1.212"
+kube2_p="22"
+kube3="192.168.1.213"
+kube3_p="22"
 
 ### alias machines
-# vps-us-ny-kube-1
-alias _kube1='_deploy2 "${vpsusnykube1p}" root "${vpsusnykube1}" ; _ssh2 "${vpsusnykube1}" root "${vpsusnykube1p}"'
-
-# vps-us-lax-kube-2
-alias _kube2='_deploy2 "${vpsuslaxkube2p}" root "${vpsuslaxkube2}" ; _ssh2 "${vpsuslaxkube2}" root "${vpsuslaxkube2p}"'
-
-# vps-ger-nue-kube-3
-alias _kube3='_deploy2 "${vpsgernuekube3p}" root "${vpsgernuekube3}" ; _ssh2 "${vpsgernuekube3}" root "${vpsgernuekube3p}"'
-
-# vps-us-chi-kube-4
-alias _kube4='_deploy2 "${vpsuschikube4p}" root "${vpsuschikube4}" ; _ssh2 "${vpsuschikube4}" root "${vpsuschikube4p}"'
-
-# ds-ger-bs-kube-100
-alias _kube100='_deploy2 "${dsgerbskube100p}" root "${dsgerbskube100}" ; _ssh2 "${dsgerbskube100}" root "${dsgerbskube100p}"'
-
-# vps-ger-bs-kubectl-200
-#alias _kube200='_deploy2 "${vpsgerbskubectl200p}" root "${vpsgerbskubectl200}" ; _ssh2 "${vpsgerbskubectl200}" root "${vpsgerbskubectl200p}"'
-
-# ds-ger-bs-kube-250
-#alias _kube250='_deploy2 "${dsgerbskube250p}" root "${dsgerbskube250}" ; _ssh2 "${dsgerbskube250}" root "${dsgerbskube250p}"'
+alias _kube1='_deploy2 "${kube1_p}" root "${kube1}" ; _ssh2 "${kube1}" root "${kube1_p}"'
+alias _kube2='_deploy2 "${kube2_p}" root "${kube2}" ; _ssh2 "${kube2}" root "${kube2_p}"'
+alias _kube3='_deploy2 "${kube3_p}" root "${kube3}" ; _ssh2 "${kube3}" root "${kube3_p}"'
 
 # execute command on every node - single
 alias _exec1='echo ; echo -e "\e[1;7mvps-us-ny-kube-1\e[0m" ; _deploy2 "${vpsusnykube1p}" root "${vpsusnykube1}" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ; echo'
@@ -147,11 +126,9 @@ clear
 echo ""
 echo -e "\e[1m_sshp:\e[0m"
 echo ""
-echo "_kube1   - vps-us-ny-kube-1"
-echo "_kube2   - vps-us-lax-kube-2"
-echo "_kube3   - vps-ger-nue-kube-3"
-echo "_kube4   - vps-us-chi-kube-4"
-echo "_kube100 - ds-ger-bs-kube-100"
+echo "_kube1"
+echo "_kube2"
+echo "_kube3"
 echo ""
 echo "_exec - execute sh"
 echo "_deploy1 <port> root <host>"
@@ -214,30 +191,30 @@ fi
 LS_COLORS=$LS_COLORS:'ln=01;37;44:di=01;33:or=05;97;100:ex=01;32;43'
 export LS_COLORS
 
-## SSH command after login - access
-if [[ "$HOSTNAME" == "vps-ger-fra-1" ]] ; then
-    source ~/ssh-find-agent/ssh-find-agent.sh
-    echo ""
-    set_ssh_agent_socket
+## SSH command after login - devbox
+if [[ "$HOSTNAME" == "DevBox" ]] ; then
+#    source ~/ssh-find-agent/ssh-find-agent.sh
+#    echo ""
+#    set_ssh_agent_socket
     _sshp
     else
        :
 fi
 
-if [[ "$HOSTNAME" == "ds-ger-bs-kube-100" ]] ; then
-    clear
-    echo ""
-    kubectl cluster-info | head -n -2
-    echo ""
-    kubectl get nodes
-    echo ""
-    kubectl get pods --all-namespaces
-    echo ""
-    kubectl get svc --all-namespaces
-    echo ""
-    else
-       :
-fi
+#if [[ "$HOSTNAME" == "ds-ger-bs-kube-100" ]] ; then
+#    clear
+#    echo ""
+#    kubectl cluster-info | head -n -2
+#    echo ""
+#    kubectl get nodes
+#    echo ""
+#    kubectl get pods --all-namespaces
+#    echo ""
+#    kubectl get svc --all-namespaces
+#    echo ""
+#    else
+#       :
+#fi
 
 #if [[ "$HOSTNAME" == "ds-ger-bs-kube-100" ]] ; then
 #    echo ""
