@@ -1,4 +1,4 @@
-# bash-acc
+# bash-dev
 
 bash file for access server 
 
