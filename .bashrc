@@ -39,6 +39,9 @@ shopt -s checkwinsize
 
 umask 0002
 
+# Docker login fix
+export DOCKER_CLI_EXPERIMENTAL=enabled
+
 ### Exports
 export BASH_FILER="/tmp"
 export HISTSIZE=100000
