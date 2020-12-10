@@ -142,6 +142,12 @@ echo "Shell No:" $SHLVL
 echo ""
 }
 
+_ssht () {
+if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+  tmux attach || tmux new
+fi
+}
+
 ### Misc
 export LS_OPTIONS='--color=auto'
 alias ll='ls -lhF $LS_OPTIONS'
@@ -201,6 +207,7 @@ if [[ "$HOSTNAME" == "DevBox" ]] ; then
 #    source ~/ssh-find-agent/ssh-find-agent.sh
 #    echo ""
 #    set_ssh_agent_socket
+    _ssht
     _sshp
     else
        :
