@@ -95,6 +95,8 @@ esac
 echo -ne "\033]0;${USER}@${HOSTNAME}\007"
 
 ### machines
+pi='192.168.1.240'
+pi_p='22'
 kube1="192.168.1.211"
 kube1_p="22"
 kube2="192.168.1.212"
@@ -103,6 +105,7 @@ kube3="192.168.1.213"
 kube3_p="22"
 
 ### alias machines
+alias _pi='_deploy2 "${pi_p}" pi "${pi}" ; _ssh2 "${pi}" pi "${pi_p}"'
 alias _kube1='_deploy2 "${kube1_p}" root "${kube1}" ; _ssh2 "${kube1}" root "${kube1_p}"'
 alias _kube2='_deploy2 "${kube2_p}" root "${kube2}" ; _ssh2 "${kube2}" root "${kube2_p}"'
 alias _kube3='_deploy2 "${kube3_p}" root "${kube3}" ; _ssh2 "${kube3}" root "${kube3_p}"'
@@ -129,6 +132,7 @@ clear
 echo ""
 echo -e "\e[1m_sshp:\e[0m"
 echo ""
+echo "_pi"
 echo "_kube1"
 echo "_kube2"
 echo "_kube3"
