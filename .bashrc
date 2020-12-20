@@ -81,7 +81,7 @@ DevBox)
 # green
 COLOR_WS="\[\033[1;32m\]"
 ;;
-*kube*)
+*Kube*)
 # light blue
 COLOR_WS="\[\033[1;36m\]"
 ;;
