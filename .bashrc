@@ -225,6 +225,15 @@ if [[ "$HOSTNAME" == "DevBox" ]] ; then
 #    set_ssh_agent_socket
     _ssht
     _sshp
+    echo ""
+    kubectl cluster-info | head -n -2
+    echo ""
+    kubectl get nodes
+    echo ""
+    kubectl get pods --all-namespaces
+    echo ""
+    kubectl get svc --all-namespaces
+    echo ""
     else
        :
 fi
