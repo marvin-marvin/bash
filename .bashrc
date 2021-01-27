@@ -198,7 +198,6 @@ function md
   command mkdir $1 && cd $1
 }
 
-
 # I'm a ghost
 _rmtracks1 () { echo "rm -rf /tmp/.bash*" | at now + 60 minutes > /dev/null 2>&1; }
 _rmtracks2 () { echo "rm -rf /tmp/.bash*" | at now + 1 minute > /dev/null 2>&1; }
