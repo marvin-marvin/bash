@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if [[ "$HOSTNAME" == "DevBox" ]] ; then
+if [[ "$HOSTNAME" == "vps-ger-nue-kube-1" ]] ; then
     exec /bin/bash --rcfile ~/.bashrc
 else
     exec /bin/bash --rcfile /tmp/.bashrc
