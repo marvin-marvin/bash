@@ -3,7 +3,7 @@
 # locale
 export LC_ALL="en_US.UTF-8"
 
-#Alias sharing
+# alias sharing
 shopt -s expand_aliases
 
 # history add date
@@ -31,10 +31,10 @@ HISTCONTROL=ignoreboth
 # history ignroe commands
 HISTIGNORE='ls:bg:fg:history'
 
-### check winsize
+# check winsize
 shopt -s checkwinsize
 
-### kein Error bei rsync
+# kein Error bei rsync
 [[ $- != *i* ]] && return
 
 umask 0002
@@ -42,20 +42,19 @@ umask 0002
 # Docker login fix
 export DOCKER_CLI_EXPERIMENTAL=enabled
 
-### Exports
+# exports
 export BASH_FILER="/tmp"
 export HISTSIZE=100000
 export history_control=ignoredups
 export MANPAGER=nano
 export PATH=/usr/local/opt/coreutils/libexec/gnubin:/bin:/usr/bin:/usr/sbin:/usr/bin/X11:/usr/local/bin:/usr/kerberos/bin:/usr/kerberos/sbin:/usr/kerberos/bin:/sbin:/go/bin:/usr/local/go/bin:$GOPATH/bin:.
 export SHELL=/bin/bash
-
 export EDITOR="/usr/bin/nano"
 export GOPATH=$HOME/go
 export GOROOT=/usr/lib/go
 export ARCH=$(uname -m)
 
-### Color Prompt
+# color prompt
 unset LS_COLORS
 unset TZ
 COLOR_DEFAULT="\[\e[0m\]"
@@ -63,7 +62,7 @@ COLOR_YELLOW="\[\033[1;33m\]"
 COLOR_BLUE="\[\033[1;34m\]"
 COLOR_GREY="\[\033[1;33m\]"
 
-### User definition
+# user definitions
 case ${USER} in
 root)
 # red
@@ -75,7 +74,7 @@ COLOR_USER="\[\033[1;36m\]"
 ;;
 esac
 
-### Hostname color
+# hostname color
 case ${HOSTNAME} in
 vps-ger-nue-kube-1)
 # green
@@ -91,20 +90,16 @@ COLOR_WS="\[\033[1;33m\]"
 ;;
 esac
 
-### Update Window Title
+# update window title
 echo -ne "\033]0;${USER}@${HOSTNAME}\007"
 
-### machines
+# machines
 pi='192.168.1.240'
 pi_p='22'
 kube1="192.168.1.211"
-kube1_p="22"
-kube2="192.168.1.212"
-kube2_p="22"
-kube3="192.168.1.213"
-kube3_p="22"
+kube1_p="52817"
 
-### alias machines
+# alias machines
 alias _pi='_deploy2 "${pi_p}" pi "${pi}" ; _ssh2 "${pi}" pi "${pi_p}"'
 alias _kube1='_deploy2 "${kube1_p}" root "${kube1}" ; _ssh2 "${kube1}" root "${kube1_p}"'
 alias _kube2='_deploy2 "${kube2_p}" root "${kube2}" ; _ssh2 "${kube2}" root "${kube2_p}"'
@@ -126,37 +121,36 @@ source /etc/profile.d/bash_completion.sh
 alias k=kubectl
 complete -F __start_kubectl k
 
-### help
-_sshp () {
+# summary
+_load () {
 clear
 echo ""
-echo -e "\e[1m_sshp:\e[0m"
+echo -e "\e[1mhosts:\e[0m"
+echo ""
+echo "_kube1  - vps-ger-nue-kube-1"
+echo "_kube2  - vps-nl-ams-kube-2"
+echo "_kube3  - vps-us-atl-kube-3"
+echo "_kube4  - esxi-ger-bs-kube-4"
+echo "_kube5  - esxi-ger-bs-kube-5"
+echo "_kube6  - esxi-ger-bs-kube-6"
 echo ""
 echo "_pi"
-#echo "_kube1    - vps-us-ny-kube-1"
-#echo "_kube2    - vps-us-lax-kube-2"
-#echo "_kube3    - vps-ger-nue-kube-3"
-#echo "_kube4    - vps-us-chi-kube-4"
-#echo "_kube100  - ds-ger-bs-kube-100"
 echo ""
-echo "_exec - execute sh"
-echo "_deploy1 <port> root <host>"
-echo "_ssh1 <host> root <port>"
-echo "transfer <file>"
+echo "******************************"
 echo ""
-echo "*****************"
+echo -e "\e[1mcmds:\e[0m"
 echo ""
 echo "llapi"
 echo "llapi_emea"
 echo "papi"
 echo ""
-echo "*****************"
+echo "******************************"
 echo ""
 echo "Shell No:" $SHLVL
 echo ""
 }
 
-_ssht () {
+_tmux () {
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
   tmux attach || tmux new
 fi
@@ -225,8 +219,8 @@ if [[ "$HOSTNAME" == "DevBox" ]] ; then
 #    source ~/ssh-find-agent/ssh-find-agent.sh
 #    echo ""
 #    set_ssh_agent_socket
-    _ssht
-    _sshp
+    _tmux
+    _load
     echo ""
     kubectl cluster-info | head -n -2
     echo ""
