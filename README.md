@@ -1,5 +1,5 @@
-# bash-dev
+# bash
 
-bash file for access server 
+bash file for access
 
 deployment to clients via rsync
