@@ -3,7 +3,7 @@
 # locale
 export LC_ALL="en_US.UTF-8"
 
-### Alias sharing
+#Alias sharing
 shopt -s expand_aliases
 
 # history add date
@@ -133,9 +133,11 @@ echo ""
 echo -e "\e[1m_sshp:\e[0m"
 echo ""
 echo "_pi"
-echo "_kube1"
-echo "_kube2"
-echo "_kube3"
+#echo "_kube1    - vps-us-ny-kube-1"
+#echo "_kube2    - vps-us-lax-kube-2"
+#echo "_kube3    - vps-ger-nue-kube-3"
+#echo "_kube4    - vps-us-chi-kube-4"
+#echo "_kube100  - ds-ger-bs-kube-100"
 echo ""
 echo "_exec - execute sh"
 echo "_deploy1 <port> root <host>"
