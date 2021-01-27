@@ -77,11 +77,11 @@ esac
 
 ### Hostname color
 case ${HOSTNAME} in
-DevBox)
+vps-ger-nue-kube-1)
 # green
 COLOR_WS="\[\033[1;32m\]"
 ;;
-*Kube*)
+*esxi*)
 # light blue
 COLOR_WS="\[\033[1;36m\]"
 ;;
