@@ -94,26 +94,29 @@ esac
 echo -ne "\033]0;${USER}@${HOSTNAME}\007"
 
 # machines
+kube1="10.0.0.1"
+kube1_p="52817"
+kube2="10.0.0.2"
+kube2_p="52817"
+kube3="10.0.0.3"
+kube3_p="52817"
+kube4="10.0.0.4"
+kube4_p="52817"
+kube5="10.0.0.5"
+kube5_p="52817"
+kube6="10.0.0.6"
+kube6_p="52817"
 pi='192.168.1.240'
 pi_p='22'
-kube1="192.168.1.211"
-kube1_p="52817"
 
 # alias machines
-alias _pi='_deploy2 "${pi_p}" pi "${pi}" ; _ssh2 "${pi}" pi "${pi_p}"'
 alias _kube1='_deploy2 "${kube1_p}" root "${kube1}" ; _ssh2 "${kube1}" root "${kube1_p}"'
 alias _kube2='_deploy2 "${kube2_p}" root "${kube2}" ; _ssh2 "${kube2}" root "${kube2_p}"'
 alias _kube3='_deploy2 "${kube3_p}" root "${kube3}" ; _ssh2 "${kube3}" root "${kube3_p}"'
-
-# execute command on every node - single
-alias _exec1='echo ; echo -e "\e[1;7mvps-us-ny-kube-1\e[0m" ; _deploy2 "${vpsusnykube1p}" root "${vpsusnykube1}" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ; echo'
-alias _exec2='echo ; echo -e "\e[1;7mvps-us-lax-kube-2\e[0m" ; _deploy2 "${vpsuslaxkube2p}" root "${vpsuslaxkube2}" ; _execute "${vpsuslaxkube2}" root "${vpsuslaxkube2p}" ; echo'
-alias _exec3='echo ; echo -e "\e[1;7mvps-ger-nue-kube-3\e[0m" ; _deploy2 "${vpsgernuekube3p}" root "${vpsgernuekube3}" ; _execute "${vpsgernuekube3}" root "${vpsgernuekube3p}" ; echo'
-alias _exec4='echo ; echo -e "\e[1;7mvps-us-chi-kube-4\e[0m" ; _deploy2 "${vpsuschikube4p}" root "${vpsuschikube4}" ; _execute "${vpsuschikube4}" root "${vpsuschikube4p}" ; echo'
-alias _exec100='echo ; echo -e "\e[1;7mds-ger-bs-kube-100\e[0m" ; _deploy2 "${dsgerbskube100p}" root "${dsgerbskube100}" ; _execute "${dsgerbskube100}" root "${dsgerbskube100p}" ; echo'
-#alias _exec200='echo ; echo -e "\e[1;7mvps-ger-bs-kubectl-200\e[0m" ; _deploy2 "${vpsgerbskubectl200p}" root "${vpsgerbskubectl200}" ; _execute "${vpsgerbskubectl200}" root "${vpsgerbskubectl200p}" ; echo'
-#alias _exec250='echo ; echo -e "\e[1;7mds-ger-bs-kube-250\e[0m" ; _deploy2 "${dsgerbskube250p}" root "${dsgerbskube250}" ; _execute "${dsgerbskube250}" root "${dsgerbskube250p}" ; echo'
-alias _exec='_exec1 ; _exec2 ; _exec3 ; _exec4 ; _exec100'
+alias _kube3='_deploy2 "${kube4_p}" root "${kube4}" ; _ssh2 "${kube4}" root "${kube4_p}"'
+alias _kube3='_deploy2 "${kube5_p}" root "${kube5}" ; _ssh2 "${kube5}" root "${kube5_p}"'
+alias _kube3='_deploy2 "${kube6_p}" root "${kube6}" ; _ssh2 "${kube6}" root "${kube6_p}"'
+alias _pi='_deploy2 "${pi_p}" pi "${pi}" ; _ssh2 "${pi}" pi "${pi_p}"'
 
 # k8s stuff
 source <(kubectl completion bash) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
@@ -233,6 +236,19 @@ if [[ "$HOSTNAME" == "DevBox" ]] ; then
     else
        :
 fi
+
+
+### idea section
+
+# execute command on every node - single
+#alias _exec1='echo ; echo -e "\e[1;7mvps-us-ny-kube-1\e[0m" ; _deploy2 "${vpsusnykube1p}" root "${vpsusnykube1}" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ; echo'
+#alias _exec2='echo ; echo -e "\e[1;7mvps-us-lax-kube-2\e[0m" ; _deploy2 "${vpsuslaxkube2p}" root "${vpsuslaxkube2}" ; _execute "${vpsuslaxkube2}" root "${vpsuslaxkube2p}" ; echo'
+#alias _exec3='echo ; echo -e "\e[1;7mvps-ger-nue-kube-3\e[0m" ; _deploy2 "${vpsgernuekube3p}" root "${vpsgernuekube3}" ; _execute "${vpsgernuekube3}" root "${vpsgernuekube3p}" ; echo'
+#alias _exec4='echo ; echo -e "\e[1;7mvps-us-chi-kube-4\e[0m" ; _deploy2 "${vpsuschikube4p}" root "${vpsuschikube4}" ; _execute "${vpsuschikube4}" root "${vpsuschikube4p}" ; echo'
+#alias _exec100='echo ; echo -e "\e[1;7mds-ger-bs-kube-100\e[0m" ; _deploy2 "${dsgerbskube100p}" root "${dsgerbskube100}" ; _execute "${dsgerbskube100}" root "${dsgerbskube100p}" ; echo'
+#alias _exec200='echo ; echo -e "\e[1;7mvps-ger-bs-kubectl-200\e[0m" ; _deploy2 "${vpsgerbskubectl200p}" root "${vpsgerbskubectl200}" ; _execute "${vpsgerbskubectl200}" root "${vpsgerbskubectl200p}" ; echo'
+#alias _exec250='echo ; echo -e "\e[1;7mds-ger-bs-kube-250\e[0m" ; _deploy2 "${dsgerbskube250p}" root "${dsgerbskube250}" ; _execute "${dsgerbskube250}" root "${dsgerbskube250p}" ; echo'
+#alias _exec='_exec1 ; _exec2 ; _exec3 ; _exec4 ; _exec100'
 
 #if [[ "$HOSTNAME" == "ds-ger-bs-kube-100" ]] ; then
 #    clear
