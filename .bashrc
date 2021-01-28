@@ -110,13 +110,13 @@ pi='192.168.1.240'
 pi_p='22'
 
 # alias machines
-alias _kube1='_deploy2 "${kube1_p}" root "${kube1}" ; _ssh2 "${kube1}" root "${kube1_p}"'
-alias _kube2='_deploy2 "${kube2_p}" root "${kube2}" ; _ssh2 "${kube2}" root "${kube2_p}"'
-alias _kube3='_deploy2 "${kube3_p}" root "${kube3}" ; _ssh2 "${kube3}" root "${kube3_p}"'
-alias _kube3='_deploy2 "${kube4_p}" root "${kube4}" ; _ssh2 "${kube4}" root "${kube4_p}"'
-alias _kube3='_deploy2 "${kube5_p}" root "${kube5}" ; _ssh2 "${kube5}" root "${kube5_p}"'
-alias _kube3='_deploy2 "${kube6_p}" root "${kube6}" ; _ssh2 "${kube6}" root "${kube6_p}"'
-alias _pi='_deploy2 "${pi_p}" pi "${pi}" ; _ssh2 "${pi}" pi "${pi_p}"'
+alias _kube1='_deploy "${kube1_p}" root "${kube1}" ; _ssh "${kube1}" root "${kube1_p}"'
+alias _kube2='_deploy "${kube2_p}" root "${kube2}" ; _ssh "${kube2}" root "${kube2_p}"'
+alias _kube3='_deploy "${kube3_p}" root "${kube3}" ; _ssh "${kube3}" root "${kube3_p}"'
+alias _kube4='_deploy "${kube4_p}" root "${kube4}" ; _ssh "${kube4}" root "${kube4_p}"'
+alias _kube5='_deploy "${kube5_p}" root "${kube5}" ; _ssh "${kube5}" root "${kube5_p}"'
+alias _kube6='_deploy "${kube6_p}" root "${kube6}" ; _ssh "${kube6}" root "${kube6_p}"'
+alias _pi='_deploy "${pi_p}" pi "${pi}" ; _ssh "${pi}" pi "${pi_p}"'
 
 # summary
 _load () {
@@ -172,12 +172,10 @@ alias clh='history -c'
 PROMPT_COMMAND=_exitstatus
 
 # functions
-_ssh1 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -X "$2"@"$1" -t "${BASH_FILER}/.bash" 2> /dev/null ; _title ; }
-_ssh2 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/bash-keys/client_rsa -X "$2"@"$1" -t "${BASH_FILER}/.bash" 2> /dev/null ; _title; }
-#_ssh2 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/bash-keys/acc_rsa -X "$2"@"$1" -t "${BASH_FILER}/.bash" 2> /dev/null ; _title ; }
+
+_ssh () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.ssh/client_rsa -X "$2"@"$1" -t "${BASH_FILER}/.bash" 2> /dev/null ; _title; }
 _title () { echo -ne "\033]0;${USER}@${HOSTNAME}\007"; }
-_deploy1 () { rsync -avxL --delete --exclude '.bash_sessions' --exclude '.bash_history' -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p "$1"" ~/bash-acc/.bash* "$2"@"$3":${BASH_FILER} > /dev/null; }
-_deploy2 () { rsync -avxL --delete --exclude '.bash_sessions' --exclude '.bash_history' -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/bash-keys/client_rsa -p "$1"" ~/bash-dev/.bash* "$2"@"$3":${BASH_FILER} > /dev/null; }
+_deploy () { rsync -avxL --delete --exclude '.bash_sessions' --exclude '.bash_history' -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.ssh/client_rsa -p "$1"" ~/bash/.bash* "$2"@"$3":${BASH_FILER} > /dev/null; }
 #_deploy2 () { rsync -avxL --delete --exclude '.bash_sessions' --exclude '.bash_history' -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/bash-keys/acc_rsa -p "$1"" ~/bash-acc/.bash* ~/exec.sh "$2"@"$3":${BASH_FILER} > /dev/null; }
 _execute () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/bash-keys/acc_rsa -X "$2"@"$1" -t "chmod +x ${BASH_FILER}/exec.sh ; ${BASH_FILER}/exec.sh" 2> /dev/null ; _title ; }
 
@@ -234,6 +232,12 @@ fi
 
 
 ### idea section
+
+# ssh without key
+#_ssh1 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -X "$2"@"$1" -t "${BASH_FILER}/.bash" 2> /dev/null ; _title ; }
+
+# deploy without ssh key
+#_deploy1 () { rsync -avxL --delete --exclude '.bash_sessions' --exclude '.bash_history' -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p "$1"" ~/bash-acc/.bash* "$2"@"$3":${BASH_FILER} > /dev/null; }
 
 # execute command on every node - single
 #alias _exec1='echo ; echo -e "\e[1;7mvps-us-ny-kube-1\e[0m" ; _deploy2 "${vpsusnykube1p}" root "${vpsusnykube1}" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ; echo'
