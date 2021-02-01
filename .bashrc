@@ -198,6 +198,7 @@ fi
 # some colors
 LS_COLORS=$LS_COLORS:'ln=01;37;44:di=01;33:or=05;97;100:ex=01;32;43'
 export LS_COLORS
+alias ssh='TERM=screen ssh'
 
 # work alias
 alias llapi='docker run --env-file ~/.env.env --user $(id -u) --interactive --tty --rm --volume "$HOME/.ipython-llapi-us:$HOME/.ipython" gcr.io/lastline-docker-internal-prod/llapi-shell:dev-latest $*'
