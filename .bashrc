@@ -195,11 +195,6 @@ else
 fi
 }
 
-# some colors
-LS_COLORS=$LS_COLORS:'ln=01;37;44:di=01;33:or=05;97;100:ex=01;32;43'
-export LS_COLORS
-alias ssh='TERM=screen ssh'
-
 # work alias
 alias llapi='docker run --env-file ~/.env.env --user $(id -u) --interactive --tty --rm --volume "$HOME/.ipython-llapi-us:$HOME/.ipython" gcr.io/lastline-docker-internal-prod/llapi-shell:dev-latest $*'
 alias llapi_emea='docker run --env-file ~/.env_emea.env --user $(id -u) --interactive --tty --rm --volume "$HOME/.ipython-llapi-emea:$HOME/.ipython" gcr.io/lastline-docker-internal-prod/llapi-shell:dev-latest $*'
@@ -229,6 +224,10 @@ fi
 #EOF
 
 ### idea section
+
+# some colors (enable if available on ssh host)
+#LS_COLORS=$LS_COLORS:'ln=01;37;44:di=01;33:or=05;97;100:ex=01;32;43'
+#export LS_COLORS
 
 # ssh without key
 #_ssh1 () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -X "$2"@"$1" -t "${BASH_FILER}/.bash" 2> /dev/null ; _title ; }
