@@ -77,12 +77,16 @@ esac
 # hostname color
 case ${HOSTNAME} in
 vps-ger-nue-kube-1)
-# green
-COLOR_WS="\[\033[1;32m\]"
+# red
+COLOR_WS="\[\033[1;31m\]"
 ;;
 *esxi*)
 # light blue
 COLOR_WS="\[\033[1;36m\]"
+;;
+*aspberrypi)
+# green
+COLOR_WS="\[\033[1;32m\]"
 ;;
 *)
 # yellow
