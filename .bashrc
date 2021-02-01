@@ -176,8 +176,6 @@ PROMPT_COMMAND=_exitstatus
 _ssh () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.ssh/client_rsa -X "$2"@"$1" -t "${BASH_FILER}/.bash" 2> /dev/null ; _title; }
 _title () { echo -ne "\033]0;${USER}@${HOSTNAME}\007"; }
 _deploy () { rsync -avxL --delete --exclude '.bash_sessions' --exclude '.bash_history' -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.ssh/client_rsa -p "$1"" ~/bash/.bash* "$2"@"$3":${BASH_FILER} > /dev/null; }
-#_deploy2 () { rsync -avxL --delete --exclude '.bash_sessions' --exclude '.bash_history' -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/bash-keys/acc_rsa -p "$1"" ~/bash-acc/.bash* ~/exec.sh "$2"@"$3":${BASH_FILER} > /dev/null; }
-_execute () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/bash-keys/acc_rsa -X "$2"@"$1" -t "chmod +x ${BASH_FILER}/exec.sh ; ${BASH_FILER}/exec.sh" 2> /dev/null ; _title ; }
 
 # mkdir + cd into
 function md
@@ -191,30 +189,27 @@ _rmtracks2 () { echo "rm -rf /tmp/.bash*" | at now + 1 minute > /dev/null 2>&1; 
 
 _exitstatus () { 
 if [ $? == 0 ]; then
-PS1="\n$COLOR_GREY[$COLOR_USER${USER}$COLOR_GREY|$COLOR_WS${HOSTNAME}$COLOR_GREY] $COLOR_BLUE\w$COLOR_WS $COLOR_GREY$(date +"%Y-%m-%d") \t \[\033[1;32m\]> $COLOR_DEFAULT"
+  PS1="\n$COLOR_GREY[$COLOR_USER${USER}$COLOR_GREY|$COLOR_WS${HOSTNAME}$COLOR_GREY] $COLOR_BLUE\w$COLOR_WS $COLOR_GREY$(date +"%Y-%m-%d") \t \[\033[1;32m\]> $COLOR_DEFAULT"
 else
-PS1="\n$COLOR_GREY[$COLOR_USER${USER}$COLOR_GREY|$COLOR_WS${HOSTNAME}$COLOR_GREY] $COLOR_BLUE\w$COLOR_WS $COLOR_GREY$(date +"%Y-%m-%d") \t \[\033[1;31m\]> $COLOR_DEFAULT"
+  PS1="\n$COLOR_GREY[$COLOR_USER${USER}$COLOR_GREY|$COLOR_WS${HOSTNAME}$COLOR_GREY] $COLOR_BLUE\w$COLOR_WS $COLOR_GREY$(date +"%Y-%m-%d") \t \[\033[1;31m\]> $COLOR_DEFAULT"
 fi
 }
 
-### some solors
+# some colors
 LS_COLORS=$LS_COLORS:'ln=01;37;44:di=01;33:or=05;97;100:ex=01;32;43'
 export LS_COLORS
 
-alias llapi='docker run --env-file ~/env.env --user $(id -u) --interactive --tty --rm --volume "$HOME/.ipython-llapi-us:$HOME/.ipython" gcr.io/lastline-docker-internal-prod/llapi-shell:dev-latest $*'
-alias llapi_emea='docker run --env-file ~/env_emea.env --user $(id -u) --interactive --tty --rm --volume "$HOME/.ipython-llapi-emea:$HOME/.ipython" gcr.io/lastline-docker-internal-prod/llapi-shell:dev-latest $*'
-alias papi='docker run --env-file ~/env.env --user $(id -u) --interactive --tty --rm --volume "$HOME/.ipython-llapi-papi:$HOME/.ipython" gcr.io/lastline-docker-internal-prod/llapi-shell:dev-latest papi'
+# work alias
+alias llapi='docker run --env-file ~/.env.env --user $(id -u) --interactive --tty --rm --volume "$HOME/.ipython-llapi-us:$HOME/.ipython" gcr.io/lastline-docker-internal-prod/llapi-shell:dev-latest $*'
+alias llapi_emea='docker run --env-file ~/.env_emea.env --user $(id -u) --interactive --tty --rm --volume "$HOME/.ipython-llapi-emea:$HOME/.ipython" gcr.io/lastline-docker-internal-prod/llapi-shell:dev-latest $*'
+alias papi='docker run --env-file ~/.env.env --user $(id -u) --interactive --tty --rm --volume "$HOME/.ipython-llapi-papi:$HOME/.ipython" gcr.io/lastline-docker-internal-prod/llapi-shell:dev-latest papi'
 
-## SSH command after login - devbox
-if [[ "$HOSTNAME" == "DevBox" ]] ; then
-#    source ~/ssh-find-agent/ssh-find-agent.sh
-#    echo ""
-#    set_ssh_agent_socket
-# k8s stuff
-source <(kubectl completion bash) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
-source /etc/profile.d/bash_completion.sh
-alias k=kubectl
-complete -F __start_kubectl k
+# SSH command after login
+if [[ "$HOSTNAME" == "vps-ger-nue-kube-1" ]] ; then
+  source <(kubectl completion bash)
+  source /etc/profile.d/bash_completion.sh
+  alias k=kubectl
+  complete -F __start_kubectl k
     _tmux
     _load
     echo ""
@@ -227,9 +222,10 @@ complete -F __start_kubectl k
     kubectl get svc --all-namespaces
     echo ""
     else
-       :
+      :
 fi
 
+#EOF
 
 ### idea section
 
@@ -238,6 +234,9 @@ fi
 
 # deploy without ssh key
 #_deploy1 () { rsync -avxL --delete --exclude '.bash_sessions' --exclude '.bash_history' -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p "$1"" ~/bash-acc/.bash* "$2"@"$3":${BASH_FILER} > /dev/null; }
+
+# execute on target
+#_execute () { ssh -p "$3" -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/bash-keys/acc_rsa -X "$2"@"$1" -t "chmod +x ${BASH_FILER}/exec.sh ; ${BASH_FILER}/exec.sh" 2> /dev/null ; _title ; }
 
 # execute command on every node - single
 #alias _exec1='echo ; echo -e "\e[1;7mvps-us-ny-kube-1\e[0m" ; _deploy2 "${vpsusnykube1p}" root "${vpsusnykube1}" ; _execute "${vpsusnykube1}" root "${vpsusnykube1p}" ; echo'
@@ -267,6 +266,31 @@ fi
 #if [[ "$HOSTNAME" == "ds-ger-bs-kube-100" ]] ; then
 #    echo ""
 #    virsh list --all
+#    else
+#       :
+#fi
+
+# SSH command after login
+#if [[ "$HOSTNAME" == "vps-ger-nue-kube-1" ]] ; then
+#    source ~/ssh-find-agent/ssh-find-agent.sh
+#    echo ""
+#    set_ssh_agent_socket
+# k8s stuff
+#source <(kubectl completion bash) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
+#source /etc/profile.d/bash_completion.sh
+#alias k=kubectl
+#complete -F __start_kubectl k
+#    _tmux
+#    _load
+#    echo ""
+#    kubectl cluster-info | head -n -2
+#    echo ""
+#    kubectl get nodes
+#    echo ""
+#    kubectl get pods --all-namespaces
+#    echo ""
+#    kubectl get svc --all-namespaces
+#    echo ""
 #    else
 #       :
 #fi
