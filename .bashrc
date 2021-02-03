@@ -216,9 +216,9 @@ if [[ "$HOSTNAME" == "vps-ger-nue-kube-1" ]] ; then
     echo ""
     kubectl cluster-info | head -n -2
     echo ""
-    kgn
+    kubectl get nodes --sort-by=.metadata.creationTimestamp
     echo ""
-    k get -A pods
+    kubectl get -A pods
     echo ""
     kubectl get -A svc
     echo ""
