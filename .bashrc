@@ -208,17 +208,17 @@ alias papi='docker run --env-file ~/.env.env --user $(id -u) --interactive --tty
 if [[ "$HOSTNAME" == "vps-ger-nue-kube-1" ]] ; then
   source <(kubectl completion bash)
   source /etc/profile.d/bash_completion.sh
-  alias k=kubectl
-  alias kgn=k get nodes --sort-by=.metadata.creationTimestamp
+  alias k='kubectl'
+  alias kgn='kubectl get nodes --sort-by=.metadata.creationTimestamp'
   complete -F __start_kubectl k
     _tmux
     _load
     echo ""
     kubectl cluster-info | head -n -2
     echo ""
-    kubectl get nodes --sort-by=.metadata.creationTimestamp
+    kgn
     echo ""
-    kubectl get -A pods
+    k get -A pods
     echo ""
     kubectl get -A svc
     echo ""
