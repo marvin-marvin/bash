@@ -209,17 +209,18 @@ if [[ "$HOSTNAME" == "vps-ger-nue-kube-1" ]] ; then
   source <(kubectl completion bash)
   source /etc/profile.d/bash_completion.sh
   alias k=kubectl
+  alias kgn=k get nodes --sort-by=.metadata.creationTimestamp
   complete -F __start_kubectl k
     _tmux
     _load
     echo ""
-    kubectl cluster-info | head -n -2
+    k cluster-info | head -n -2
     echo ""
-    kubectl get nodes
+    kgn
     echo ""
-    kubectl get pods --all-namespaces
+    k get -A pods
     echo ""
-    kubectl get svc --all-namespaces
+    k get -A svc
     echo ""
     else
       :
