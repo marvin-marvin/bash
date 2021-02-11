@@ -111,7 +111,7 @@ kube5_p="52817"
 kube6="10.0.0.6"
 kube6_p="52817"
 pi='192.168.1.240'
-pi_p='22'
+pi_p='52817'
 
 # alias machines
 alias _kube1='_deploy "${kube1_p}" root "${kube1}" ; _ssh "${kube1}" root "${kube1_p}"'
