@@ -199,11 +199,6 @@ else
 fi
 }
 
-# work alias
-alias llapi='docker run --env-file ~/.env.env --user $(id -u) --interactive --tty --rm --volume "$HOME/.ipython-llapi-us:$HOME/.ipython" gcr.io/lastline-docker-internal-prod/llapi-shell:dev-latest $*'
-alias llapi_emea='docker run --env-file ~/.env_emea.env --user $(id -u) --interactive --tty --rm --volume "$HOME/.ipython-llapi-emea:$HOME/.ipython" gcr.io/lastline-docker-internal-prod/llapi-shell:dev-latest $*'
-alias papi='docker run --env-file ~/.env.env --user $(id -u) --interactive --tty --rm --volume "$HOME/.ipython-llapi-papi:$HOME/.ipython" gcr.io/lastline-docker-internal-prod/llapi-shell:dev-latest papi'
-
 # SSH command after login
 if [[ "$HOSTNAME" == "vps-ger-nue-kube-1" ]] ; then
   source <(kubectl completion bash)
