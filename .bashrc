@@ -209,6 +209,7 @@ if [[ "$HOSTNAME" == "vps-ger-nue-kube-1" ]] ; then
   # if does not work, install it first
   # go get -u github.com/dty1er/kubecolor/cmd/kubecolor
   complete -F __start_kubectl k
+  complete -o default -F __start_kubectl k
     _tmux
     _load
     echo ""
