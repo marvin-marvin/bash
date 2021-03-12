@@ -220,7 +220,6 @@ if [[ "$HOSTNAME" == "vps-ger-nue-kube-1" ]] ; then
   complete -o default -F __start_kubectl k
   alias k='kubectl'
   alias kgn='kubectl get nodes --sort-by=.metadata.creationTimestamp'
-  alias kch='kubectl config set-context --current --namespace='
     kubectl api-resources
     echo ""
     echo ""
