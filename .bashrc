@@ -47,10 +47,10 @@ export BASH_FILER="/tmp"
 export HISTSIZE=100000
 export history_control=ignoredups
 export MANPAGER=nano
-export PATH=/usr/local/opt/coreutils/libexec/gnubin:/bin:/usr/bin:/usr/sbin:/usr/bin/X11:/usr/local/bin:/usr/kerberos/bin:/usr/kerberos/sbin:/usr/kerberos/bin:/sbin:/go/bin:/usr/local/go/bin:.
+export PATH=/usr/local/opt/coreutils/libexec/gnubin:/bin:/usr/bin:/usr/sbin:/usr/bin/X11:/usr/local/bin:/usr/kerberos/bin:/usr/kerberos/sbin:/usr/kerberos/bin:/sbin:/go/bin:/usr/local/go/bin:$GOPATH/bin:.
 export SHELL=/bin/bash
 export EDITOR="/usr/bin/nano"
-#export GOPATH=$HOME/go
+export GOPATH=$HOME/go
 export GOROOT=/usr/lib/go
 export ARCH=$(uname -m)
 
