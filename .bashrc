@@ -173,7 +173,7 @@ alias tail5='tail -n500'
 alias su='echo $DISPLAY; xauth list; su'
 alias cls='clear'
 alias clh='history -c'
-PROMPT_COMMAND=_exitstatus
+#PROMPT_COMMAND=_exitstatus
 
 # functions
 
@@ -191,13 +191,13 @@ function md
 _rmtracks1 () { echo "rm -rf /tmp/.bash*" | at now + 60 minutes > /dev/null 2>&1; }
 _rmtracks2 () { echo "rm -rf /tmp/.bash*" | at now + 1 minute > /dev/null 2>&1; }
 
-_exitstatus () { 
-if [ $? == 0 ]; then
-  PS1="\n$COLOR_GREY[$COLOR_USER${USER}$COLOR_GREY|$COLOR_WS${HOSTNAME}$COLOR_GREY] $COLOR_BLUE\w$COLOR_WS $COLOR_GREY$(date +"%Y-%m-%d") \t \[\033[1;32m\]> $COLOR_DEFAULT [\u@\h \W $(kube_ps1)]\$ "
-else
-  PS1="\n$COLOR_GREY[$COLOR_USER${USER}$COLOR_GREY|$COLOR_WS${HOSTNAME}$COLOR_GREY] $COLOR_BLUE\w$COLOR_WS $COLOR_GREY$(date +"%Y-%m-%d") \t \[\033[1;31m\]> $COLOR_DEFAULT [\u@\h \W $(kube_ps1)]\$ "
-fi
-}
+#_exitstatus () { 
+#if [ $? == 0 ]; then
+#  PS1="\n$COLOR_GREY[$COLOR_USER${USER}$COLOR_GREY|$COLOR_WS${HOSTNAME}$COLOR_GREY] $COLOR_BLUE\w$COLOR_WS $COLOR_GREY$(date +"%Y-%m-%d") \t \[\033[1;32m\]> $COLOR_DEFAULT [\u@\h \W $(kube_ps1)]\$ "
+#else
+#  PS1="\n$COLOR_GREY[$COLOR_USER${USER}$COLOR_GREY|$COLOR_WS${HOSTNAME}$COLOR_GREY] $COLOR_BLUE\w$COLOR_WS $COLOR_GREY$(date +"%Y-%m-%d") \t \[\033[1;31m\]> $COLOR_DEFAULT [\u@\h \W $(kube_ps1)]\$ "
+#fi
+#}
 
 # SSH command after login
 if [[ "$HOSTNAME" == "vps-ger-nue-kube-1" ]] ; then
