@@ -207,7 +207,12 @@ if [[ "$HOSTNAME" == "vps-ger-nue-kube-1" ]] ; then
   source /etc/profile.d/bash_completion.sh
   source ~/kube-ps1/kube-ps1.sh
   #PS1='[\u@\h \W $(kube_ps1)]\$ '
-  KUBE_PS1_SYMBOL_USE_IMG=true
+  KUBE_PS1_SYMBOL_USE_IMG=false
+  KUBE_PS1_SEPARATOR=''
+  KUBE_PS1_CTX_COLOR=yellow
+  KUBE_PS1_SUFFIX=''
+  KUBE_PS1_PREFIX=''
+  KUBE_PS1_DIVIDER=' - '
   command -v kubecolor >/dev/null 2>&1 && alias kubectl="kubecolor --force-colors"
   # if does not work, install it first
   # go get -u github.com/dty1er/kubecolor/cmd/kubecolor
