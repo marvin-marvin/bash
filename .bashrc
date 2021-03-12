@@ -193,9 +193,9 @@ _rmtracks2 () { echo "rm -rf /tmp/.bash*" | at now + 1 minute > /dev/null 2>&1; 
 
 _exitstatus () { 
 if [ $? == 0 ]; then
-  PS1="\n$COLOR_GREY[$COLOR_USER${USER}$COLOR_GREY|$COLOR_WS${HOSTNAME}$COLOR_GREY] $COLOR_BLUE\w$COLOR_WS $COLOR_GREY$(date +"%Y-%m-%d") \t \[\033[1;32m\]> $COLOR_DEFAULT [\u@\h \W $(kube_ps1)]\$ "
+  PS1="\n$COLOR_GREY[$COLOR_USER${USER}$COLOR_GREY|$COLOR_WS${HOSTNAME}$COLOR_GREY] $COLOR_BLUE\w$COLOR_WS $COLOR_GREY$(date +"%Y-%m-%d") \t \[\033[1;32m\]> $COLOR_DEFAULT"
 else
-  PS1="\n$COLOR_GREY[$COLOR_USER${USER}$COLOR_GREY|$COLOR_WS${HOSTNAME}$COLOR_GREY] $COLOR_BLUE\w$COLOR_WS $COLOR_GREY$(date +"%Y-%m-%d") \t \[\033[1;31m\]> $COLOR_DEFAULT [\u@\h \W $(kube_ps1)]\$ "
+  PS1="\n$COLOR_GREY[$COLOR_USER${USER}$COLOR_GREY|$COLOR_WS${HOSTNAME}$COLOR_GREY] $COLOR_BLUE\w$COLOR_WS $COLOR_GREY$(date +"%Y-%m-%d") \t \[\033[1;31m\]> $COLOR_DEFAULT"
 fi
 }
 
@@ -205,6 +205,7 @@ if [[ "$HOSTNAME" == "vps-ger-nue-kube-1" ]] ; then
   source /etc/profile.d/bash_completion.sh
   source ~/kube-ps1/kube-ps1.sh
   #PS1='[\u@\h \W $(kube_ps1)]\$ '
+  PS1="\n$COLOR_GREY[$COLOR_USER${USER}$COLOR_GREY|$COLOR_WS${HOSTNAME}$COLOR_GREY] $COLOR_BLUE\w$COLOR_WS $COLOR_GREY$(date +"%Y-%m-%d") \t \[\033[1;32m\]> $COLOR_DEFAULT $(kube_ps1)\$ "
   KUBE_PS1_SYMBOL_USE_IMG=true
   command -v kubecolor >/dev/null 2>&1 && alias kubectl="kubecolor --force-colors"
   # if does not work, install it first
