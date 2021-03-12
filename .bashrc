@@ -203,13 +203,13 @@ fi
 if [[ "$HOSTNAME" == "vps-ger-nue-kube-1" ]] ; then
   source <(kubectl completion bash)
   source /etc/profile.d/bash_completion.sh
-  alias k='kubectl'
-  alias kgn='kubectl get nodes --sort-by=.metadata.creationTimestamp'
-  command -v kubecolor >/dev/null 2>&1 && alias kubectl="kubecolor"
+    command -v kubecolor >/dev/null 2>&1 && alias kubectl="kubecolor"
   # if does not work, install it first
   # go get -u github.com/dty1er/kubecolor/cmd/kubecolor
   complete -F __start_kubectl k
   complete -o default -F __start_kubectl k
+  alias k='kubectl'
+  alias kgn='kubectl get nodes --sort-by=.metadata.creationTimestamp'
     _tmux
     _load
     echo ""
