@@ -76,7 +76,7 @@ esac
 
 # hostname color
 case ${HOSTNAME} in
-vps-ger-nue-kube-1)
+VPS-Dev-Go)
 # red
 COLOR_WS="\[\033[1;31m\]"
 ;;
