@@ -205,7 +205,7 @@ fi
 if [[ "$HOSTNAME" == "vps-ger-nue-kube-1" ]] ; then
   source <(kubectl completion bash)
   source /etc/profile.d/bash_completion.sh
-  source ~/kube-ps1/kube-ps1.sh
+  #source ~/kube-ps1/kube-ps1.sh
   #PS1='[\u@\h \W $(kube_ps1)]\$ '
   KUBE_PS1_SYMBOL_USE_IMG=false
   KUBE_PS1_SEPARATOR=''
