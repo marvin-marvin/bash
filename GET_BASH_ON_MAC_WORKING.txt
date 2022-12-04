@@ -1,0 +1,6 @@
+$ brew install bash
+$ chsh -s /usr/local/bin/bash
+$ sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells’
+$ ln -s /usr/local/bin/bash /usr/local/bin/bash-terminal-app
+
+# set /usr/local/bin/bash in Terminal.app as profile command
